@@ -10,6 +10,7 @@ django = "*"
 gunicorn = "*"
 django-heroku = "*"
 djangorestframework = "*"
+django-phone-field = "*"
 
 [requires]
 python_version = "3.8"
