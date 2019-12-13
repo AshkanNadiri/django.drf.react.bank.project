@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Branch, Customer
-# Register your models here.
+from .models import Branch, Customer, Account, Product
 
 # class BranchAdmin(admin.ModelAdmin):
 #     list_display = ('title','description','completed')
@@ -8,5 +7,7 @@ from .models import Branch, Customer
 # admin.site.register(Branch, BranchAdmin)
 admin.site.register((
     Branch,
-    Customer
+    Customer,
+    Account,
+    Product
     ))
