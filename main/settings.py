@@ -25,7 +25,7 @@ SECRET_KEY = '6c*j1e)#3q#$b&8)4&s(6gg2oh6hy+jqe1qr-0%gu2nig%j+3s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bank-django-drf-local.herokuapp.com']
+ALLOWED_HOSTS = ['bank-django-drf-local.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'bank',
+    'phone_field'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +55,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'main.urls'
 
+# SILENCED_SYSTEM_CHECKS = ["admin.E108"]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -124,6 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+#Database Heroku
 if 'DATABASE_URL' in os.environ:
 	import dj_database_url
 	DATABASES = {'default': dj_database_url.config()}
