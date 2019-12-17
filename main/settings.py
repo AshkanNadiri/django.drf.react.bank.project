@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'bank',
-    'phone_field'
+    'phone_field',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
