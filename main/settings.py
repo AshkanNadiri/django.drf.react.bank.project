@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'bank',
     'phone_field',
-    'corsheaders'
 ]
 
 MIDDLEWARE = [
