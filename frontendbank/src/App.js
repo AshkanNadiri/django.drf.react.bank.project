@@ -2,29 +2,31 @@ import React, { Component } from "react";
 import Modal from "./components/Modal.js";
 import axios from "axios";
 
-class App extends Component
-
-
-
-
-
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = 
-      activeAccount: {
-        customer: "",
-        deposite: "",
+    this.state = {
+      ActiveAccount: {
+        customer : "",
+        deposite : "",
       },
       AccountsList: []
-    };
-  }
+  };
+
   componentDidMount() {
     this.refreshList();
   }
+
+  refreshList = () => {
+    axios 
+      .get("https://bank-django-drf-local.herokuapp.com/account/")
+  }
+}
+
+
+class App extends Component {
+ 
+  
   refreshList = () => {
     axios
       .get("https://bank-django-drf-local.herokuapp.com/account/")
