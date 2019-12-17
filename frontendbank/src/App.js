@@ -24,30 +24,30 @@ class App extends Component {
       .then(res => this.setState({ todoList: res.data }))
       .catch(err => console.log(err));
   };
-  displayCompleted = status => {
-    if (status) {
-      return this.setState({ viewCompleted: true });
-    }
-    return this.setState({ viewCompleted: false });
-  };
-  renderTabList = () => {
-    return (
-      <div className="my-5 tab-list">
-        <span
-          onClick={() => this.displayCompleted(true)}
-          className={this.state.viewCompleted ? "active" : ""}
-        >
-          complete
-        </span>
-        <span
-          onClick={() => this.displayCompleted(false)}
-          className={this.state.viewCompleted ? "" : "active"}
-        >
-          Incomplete
-        </span>
-      </div>
-    );
-  };
+  // displayCompleted = status => {
+  //   if (status) {
+  //     return this.setState({ viewCompleted: true });
+  //   }
+  //   return this.setState({ viewCompleted: false });
+  // };
+  // renderTabList = () => {
+  //   return (
+  //     <div className="my-5 tab-list">
+  //       <span
+  //         onClick={() => this.displayCompleted(true)}
+  //         className={this.state.viewCompleted ? "active" : ""}
+  //       >
+  //         complete
+  //       </span>
+  //       <span
+  //         onClick={() => this.displayCompleted(false)}
+  //         className={this.state.viewCompleted ? "" : "active"}
+  //       >
+  //         Incomplete
+  //       </span>
+  //     </div>
+  //   );
+  // };
   renderItems = () => {
     const { viewCompleted } = this.state;
     const newItems = this.state.todoList.filter(
