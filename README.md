@@ -1,6 +1,6 @@
 <img src="icon.png" align="right" />
 
-# MRM BANK APP
+# Heroku: python.django.drf.node.react.postgres.fullstack.app
 Bank App is for making CRUD function between the User and Database. You be able to create accounts, branches and you can edit or delete from your browser and database.
 
 ## Installation 
