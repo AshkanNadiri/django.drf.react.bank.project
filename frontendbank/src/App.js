@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
+import Home from './components/pages/Home';
+import Branch from './components/pages/Branch';
+import Account from './components/pages/Account';
+import Customer from './components/pages/Customer';
+import Product from './components/pages/Product';
 
 
 
@@ -8,8 +13,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-      
             <Header/>
+            <Route exact path="/" component={Home} />
+            <Route path="/branch" component={Branch}/>
+            <Route path ="/account" component={Account}/>
+            <Route path ="/customer" component={Customer}/>
+            <Route path = "/product" component={Product}/>
 
       </Router>
     );
