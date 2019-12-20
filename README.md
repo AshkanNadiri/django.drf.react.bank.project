@@ -1,3 +1,5 @@
+<img src="icon.png" align="right" />
+
 # MRM BANK APP
 Bank App is for making CRUD function between the User and Database.
 
