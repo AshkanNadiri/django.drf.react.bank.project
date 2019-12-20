@@ -11,8 +11,7 @@ import Product from './components/pages/Product';
 
 class App extends Component {
   
-
-  }
+  
   render() {
     return (
       <Router>
