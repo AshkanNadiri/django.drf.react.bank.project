@@ -1,9 +1,7 @@
 # MRM BANK APP
-----
 Bank App is for making CRUD function between the User and Database.
 
 ## Installation 
-----
 For the backend([Django](https://www.djangoproject.com/)) use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
 
 ```bash
