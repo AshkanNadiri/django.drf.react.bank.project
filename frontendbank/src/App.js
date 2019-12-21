@@ -7,12 +7,13 @@ import Account from './components/pages/Account';
 import Customer from './components/pages/Customer';
 import Product from './components/pages/Product';
 
+import './App.css' 
+
+
 
 
 class App extends Component {
   
-
-  }
   render() {
     return (
       <Router>
