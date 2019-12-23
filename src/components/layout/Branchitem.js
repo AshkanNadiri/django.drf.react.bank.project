@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
 class Branchitem extends Component {
+    itemGetStyle = () => {
+        if(this.props.branch.deleted){
+            return {
+                textDecoration : 'line-through'
+            }
+        }else {
+            return{
+                textDecoration: 'none'
+            }
+        }
+    }
     render() {
-       
         return (
-            <div style={branchHolderStyle}>
+            <div style={this.itemGetStyle()}>
                 <p style={branchItemStyle}>{this.props.branch.branch}</p>
             </div>
         )
@@ -17,11 +27,11 @@ Branchitem.propTypes = {
 }
 
 //style
-const branchHolderStyle= {
-    backgroundColor : "#f4f4f4",
-    padding: '4px',
-    borderBottom: '1px solid #555555'
-}
+// const branchHolderStyle= {
+//     backgroundColor : "#f4f4f4",
+//     padding: '4px',
+//     borderBottom: '1px solid #555555'
+// }
 const branchItemStyle = {
     padding: '0',
     margin: '0'
