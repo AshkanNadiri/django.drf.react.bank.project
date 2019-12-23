@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Branchitem from '../layout/Branchitem'
+import Branchitem from '../layout/Branchitem';
+
 
 class Branch extends Component {
     state = {
@@ -25,9 +26,11 @@ class Branch extends Component {
     render() {
 
         return this.state.branches.map((branch) => (
-            <Branchitem/>
+            <Branchitem key={branch.id}branch={branch}/>
         ))
     }
 }
+
+
 
 export default Branch

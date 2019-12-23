@@ -27,7 +27,8 @@ const linkStyle = {
 const headerStyle = {
     textAlign: 'center',
     padding: '10',
-    background: '#58D68D'
+    background: '#58D68D',
+    borderBottom: '1px solid #555555'
 
 }
 export default Header

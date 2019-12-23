@@ -14,10 +14,6 @@ import './App.css'
 
 class App extends Component {
   
-<<<<<<< HEAD:frontendbank/src/App.js
-=======
-  
->>>>>>> staging.frontend:src/App.js
   render() {
     return (
       

@@ -1,13 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 
-export class branchitem extends Component {
+class Branchitem extends Component {
     render() {
+       
         return (
-            <div>
-                <p>Hello</p>
+            <div style={branchHolderStyle}>
+                <p style={branchItemStyle}>{this.props.branch.branch}</p>
             </div>
         )
     }
 }
+// Proptypes
+Branchitem.propTypes = {
+    Branchitem: PropTypes.array
+}
 
-export default branchitem
+//style
+const branchHolderStyle= {
+    backgroundColor : "#f4f4f4",
+    padding: '4px',
+    borderBottom: '1px solid #555555'
+}
+const branchItemStyle = {
+    padding: '0',
+    margin: '0'
+}
+
+export default Branchitem
