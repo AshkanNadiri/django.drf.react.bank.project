@@ -14,6 +14,7 @@ class App extends Component {
   
   render() {
     return (
+      
       <Router>
             <Header/>
             <Route exact path="/" component={Home} />
@@ -23,6 +24,7 @@ class App extends Component {
             <Route path = "/product" component={Product}/>
 
       </Router>
+      
     );
   }
 }
