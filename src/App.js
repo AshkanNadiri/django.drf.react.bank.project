@@ -7,6 +7,7 @@ import Account from './components/pages/Account';
 import Customer from './components/pages/Customer';
 import Product from './components/pages/Product';
 
+
 import './App.css' 
 
 
@@ -19,13 +20,15 @@ class App extends Component {
       
       <Router>
             <Header/>
+            
             <Route exact path="/" component={Home} />
             <Route path="/branch" component={Branch}/>
             <Route path ="/account" component={Account}/>
             <Route path ="/customer" component={Customer}/>
             <Route path = "/product" component={Product}/>
-
+            
       </Router>
+      
       
     );
   }

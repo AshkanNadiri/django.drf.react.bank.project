@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Branchitem from '../layout/Branchitem';
 
 
+
 class Branch extends Component {
     state = {
         branches: [
@@ -22,6 +23,7 @@ class Branch extends Component {
             }
         ]
     }
+   
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
@@ -29,6 +31,7 @@ class Branch extends Component {
                branch.deleted = !branch.deleted
            } 
            return branch
+           
         }) });
     }
     //Delete branch
@@ -40,6 +43,8 @@ class Branch extends Component {
     render() {
 
         return this.state.branches.map((branch) => (
+
+           
             <Branchitem key={branch.id}branch={branch} markDeleted={this.markDeleted} delBranch={this.delBranch}/>
         ))
     }
