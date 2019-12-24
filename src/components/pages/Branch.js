@@ -22,11 +22,25 @@ class Branch extends Component {
             }
         ]
     }
+    // Toggle delete
+    markDeleted = (id)=>{
+        this.setState({ branches: this.state.branches.map(branch => {
+           if(branch.id === id){
+               branch.deleted = !branch.deleted
+           } 
+           return branch
+        }) });
+    }
+    //Delete branch
+    delBranch = (id) => {
+        this.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]});
+    }
+    
 
     render() {
 
         return this.state.branches.map((branch) => (
-            <Branchitem key={branch.id}branch={branch}/>
+            <Branchitem key={branch.id}branch={branch} markDeleted={this.markDeleted} delBranch={this.delBranch}/>
         ))
     }
 }
