@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
-class Branchitem extends Component {
+class Modal extends Component {
     itemGetStyle = () => {
         // if(this.props.branch.deleted){
         //     return {
@@ -62,8 +62,8 @@ const delBtnStyle = {
 }
 
 // Proptypes
-Branchitem.propTypes = {
-    Branchitem: PropTypes.array
+Modal.propTypes = {
+    Modal: PropTypes.array
 }
 
 //style
@@ -77,4 +77,4 @@ const branchItemStyle = {
     margin: '0'
 }
 
-export default Branchitem
+export default Modal;

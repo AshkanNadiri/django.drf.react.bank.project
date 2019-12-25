@@ -7,7 +7,7 @@ function Header() {
     return (
         
       <header style={headerStyle}>
-            <h1> MRM BANK</h1>
+            <h1 style= {{color: '#fff'}}> MRM BANK</h1>
             <Link style={linkStyle} to="/">home</Link>
             <Link style={linkStyle} to="/branch">branch</Link>
             <Link style={linkStyle} to="/account">account</Link>
@@ -18,7 +18,7 @@ function Header() {
    
 }
 const linkStyle = {
-    color: '#000',
+    color: '#fff',
     padding: '10px',
     fontSize: '15px',
 
@@ -27,7 +27,7 @@ const linkStyle = {
 const headerStyle = {
     textAlign: 'center',
     padding: '10',
-    background: '#58D68D',
+    background: '#333333',
     borderBottom: '1px solid #555555'
 
 }

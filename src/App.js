@@ -17,17 +17,17 @@ class App extends Component {
   
   render() {
     return (
-      
       <Router>
+        <div>
             <Header/>
-            
             <Route exact path="/" component={Home} />
             <Route path="/branch" component={Branch}/>
             <Route path ="/account" component={Account}/>
             <Route path ="/customer" component={Customer}/>
             <Route path = "/product" component={Product}/>
-            
+        </div>    
       </Router>
+      
       
       
     );
