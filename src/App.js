@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div >
             <Header/>
             <Route exact path="/" component={Home} />
             <Route path="/branch" component={Branch}/>

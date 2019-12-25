@@ -9,9 +9,11 @@ export class AddItem extends Component {
 
     // Submit function for adding the branch in to the list
     onSubmit = (e) => {
+        // const submit_branch = document.getElementById('branch_submit').value
         e.preventDefault();
         this.props.addItem(this.state.branch);
         this.setState({ branch: ''})
+        document.getElementById('branch_submit').value = null
     }
     render() {
         return (
@@ -30,6 +32,7 @@ export class AddItem extends Component {
 
                 />
                 <input 
+                    id = "branch_submit"
                     type = "text" 
                     name = "branch"
                     placeholder={this.props.placeholder}
