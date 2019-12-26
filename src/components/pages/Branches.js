@@ -7,18 +7,18 @@ import axios from 'axios';
 
 
 // const api_url = 'https://bank-django-drf-local.herokuapp.com/branch/'
-// const custom_options = {
-//     headers: {
-//         'Origin' : 'https://bank-django-drf-local.herokuapp.com',
-//         'Access-Control-Allow-Origin' : '*',
-//         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-//         'Content-Type' : 'application/json',
-//         'Accept' : 'text/html; q=1.0, */*',
-//         'X-Requested-With' : 'XMLHttpRequest',
-//         'Access-Control-Allow-Headers' : 'X-Requested-With,content-type',
-//         'Access-Control-Allow-Credentials' : true,
-//     }
-// };
+const custom_options = {
+    headers: {
+        'Origin' : 'https://bank-django-drf-local.herokuapp.com',
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+        'Content-Type' : 'application/json',
+        'Accept' : 'text/html; q=1.0, */*',
+        'X-Requested-With' : 'XMLHttpRequest',
+        'Access-Control-Allow-Headers' : 'X-Requested-With,content-type',
+        'Access-Control-Allow-Credentials' : true,
+    }
+};
 
 class Branch extends Component {
     state = {
@@ -41,9 +41,15 @@ class Branch extends Component {
         console.log(branch)
         axios.post('https://bank-django-drf-local.herokuapp.com/branches/', {
             branch
-        })
+        },custom_options)
             .then(res => this.setState({ branches: [...this.state.branches, res.data.results]}))
             .catch(err => console.log(err))
+    }
+     //Delete branch
+    delBranch = (id) => {
+        axios.delete(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`)
+            .then(res => this.refreshBranches())
+            //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
     // Toggle delete
     markDeleted = (id)=>{
@@ -55,11 +61,7 @@ class Branch extends Component {
            
         }) });
     }
-    //Delete branch
-    delBranch = (id) => {
-        axios.delete(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`)
-        .then(res=> this.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]}))
-    }
+   
  
     renderBranch = () =>  {
         return this.state.branches.map((branch) => (
