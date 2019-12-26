@@ -38,12 +38,11 @@ class Branch extends Component {
     }
     //Add item
     addItem = (branch) => {
+        console.log(branch)
         axios.post('https://bank-django-drf-local.herokuapp.com/branches/', {
-            branch,
-            deleted: false
+            branch
         })
             .then(res => this.setState({ branches: [...this.state.branches, res.data.results]}))
-        //
             .catch(err => console.log(err))
     }
     // Toggle delete
@@ -58,12 +57,12 @@ class Branch extends Component {
     }
     //Delete branch
     delBranch = (id) => {
-        this.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]});
+        axios.delete(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`)
+        .then(res=> this.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]}))
     }
  
     renderBranch = () => {
         return this.state.branches.map((branch) => (
-
            <div>
                 <Modal 
                     key={branch.id}
@@ -78,13 +77,10 @@ class Branch extends Component {
         
     render () {
        return (
-
            <div>
-               
                <AddItem placeholder={'Branch Name'} addItem={this.addItem}/> {
                    this.renderBranch()
                }
-               
            </div>
        )
    }
