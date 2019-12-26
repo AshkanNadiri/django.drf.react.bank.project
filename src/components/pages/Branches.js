@@ -42,9 +42,9 @@ class Branch extends Component {
             branch,
             deleted: false
         })
-        .then(res => this.setState([...this.state.branches, res.data.results]))
+            .then(res => this.setState({ branches: [...this.state.branches, res.data.results]}))
         //
-        .catch(err => console.log(err))
+            .catch(err => console.log(err))
     }
     // Toggle delete
     markDeleted = (id)=>{
