@@ -61,7 +61,7 @@ class Branch extends Component {
         .then(res=> this.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]}))
     }
  
-    renderBranch = () => {
+    renderBranch = () =>  {
         return this.state.branches.map((branch) => (
            <div>
                 <Modal 
