@@ -1,24 +1,54 @@
 import React, { Component } from 'react'
 import Modal from '../layout/Modal';
 import AddItem from '../layout/AddItem'
-import uuid from 'uuid'
+// import uuid from 'uuid'
 import axios from 'axios';
+
+
+
+// const api_url = 'https://bank-django-drf-local.herokuapp.com/branch/'
+// const custom_options = {
+//     headers: {
+//         'Origin' : 'https://bank-django-drf-local.herokuapp.com',
+//         'Access-Control-Allow-Origin' : '*',
+//         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+//         'Content-Type' : 'application/json',
+//         'Accept' : 'text/html; q=1.0, */*',
+//         'X-Requested-With' : 'XMLHttpRequest',
+//         'Access-Control-Allow-Headers' : 'X-Requested-With,content-type',
+//         'Access-Control-Allow-Credentials' : true,
+//     }
+// };
 
 class Branch extends Component {
     state = {
         branches: []
     }
-   
+
     componentDidMount() {
         this.refreshBranches();
     }
+
+
     //refresh branch list
     refreshBranches= () => {
-    axios.get('https://bank-django-drf-local.herokuapp.com/branch/')
-        .then(res => this.setState({branches: res.data.results}))
-        .catch(err=> console.log(err))
+        axios.get('https://bank-django-drf-local.herokuapp.com/branch/',{
+            headers: {
+                'Access-Control-Allow-Origin': true,
+              },
+        })
+            .then(res => this.setState({branches: res.data.results}))
+            .catch(err=> console.log(err))
     }
-    
+    //Add item
+    addItem = (branch) => {
+        axios.post('https://bank-django-drf-local.herokuapp.com/branch/', {
+            branch,
+            deleted: false
+        })
+        .then(res => this.setState({ branches: [...this.state.branches, res.data.results] }))
+        
+    }
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
@@ -48,15 +78,7 @@ class Branch extends Component {
         )
         )}
 
-        //Add item
-        addItem = (branch) => {
-            const newBranch = {
-                id: uuid.v4(),
-                branch,
-                deleted: false
-            }
-            this.setState({ branches: [...this.state.branches, newBranch] })
-        }
+        
     render () {
        return (
 
