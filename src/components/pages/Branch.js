@@ -32,19 +32,20 @@ class Branch extends Component {
 
     //refresh branch list
     refreshBranches= () => {
-        axios.get('https://bank-django-drf-local.herokuapp.com/branch/')
+        axios.get('https://bank-django-drf-local.herokuapp.com/branches/')
             .then(res => this.setState({branches: res.data.results}))
             .catch(err=> console.log(err))
     }
-    Add item
+    //Add item
     addItem = (branch) => {
-        axios.post('https://bank-django-drf-local.herokuapp.com/branch/', {
+        axios.post('https://bank-django-drf-local.herokuapp.com/branches/', {
             branch,
             deleted: false
         })
-        .then(res => this.setState({ branches: [...this.state.branches, res.data.results] }))
-        
-    // }
+        .then(res => this.refreshBranches())
+        //[...this.state.branches, res.data.results]
+        .catch(err => console.log(err))
+    }
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
@@ -72,7 +73,7 @@ class Branch extends Component {
                 />
             </div>
         )
-        )}
+    )}
 
         
     render () {
@@ -87,7 +88,7 @@ class Branch extends Component {
            </div>
        )
    }
-}
+};
 
 
 
