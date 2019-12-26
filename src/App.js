@@ -21,10 +21,10 @@ class App extends Component {
         <div >
             <Header/>
             <Route exact path="/" component={Home} />
-            <Route path="/branch" component={Branch}/>
-            <Route path ="/account" component={Account}/>
-            <Route path ="/customer" component={Customer}/>
-            <Route path = "/product" component={Product}/>
+            <Route path="/branches" component={Branch}/>
+            <Route path ="/accounts" component={Account}/>
+            <Route path ="/customers" component={Customer}/>
+            <Route path = "/products" component={Product}/>
         </div>    
       </Router>
       
