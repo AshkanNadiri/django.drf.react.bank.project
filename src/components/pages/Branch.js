@@ -37,14 +37,14 @@ class Branch extends Component {
             .catch(err=> console.log(err))
     }
     //Add item
-    addItem = (branch) => {
-        axios.post('https://bank-django-drf-local.herokuapp.com/branch/', {
-            branch,
-            deleted: false
-        })
-        .then(res => this.setState({ branches: [...this.state.branches, res.data.results] }))
+    // addItem = (branch) => {
+    //     axios.post('https://bank-django-drf-local.herokuapp.com/branch/', {
+    //         branch,
+    //         deleted: false
+    //     })
+    //     .then(res => this.setState({ branches: [...this.state.branches, res.data.results] }))
         
-    }
+    // }
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
