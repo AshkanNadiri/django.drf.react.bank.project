@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Home from './components/pages/Home';
-import Branch from './components/pages/Branch';
-import Account from './components/pages/Account';
-import Customer from './components/pages/Customer';
-import Product from './components/pages/Product';
+import Branches from './components/pages/Branches';
+import Accounts from './components/pages/Accounts';
+import Customers from './components/pages/Customers';
+import Products from './components/pages/Products';
 
 
 import './App.css' 
@@ -21,10 +21,10 @@ class App extends Component {
         <div >
             <Header/>
             <Route exact path="/" component={Home} />
-            <Route path="/branches" component={Branch}/>
-            <Route path ="/accounts" component={Account}/>
-            <Route path ="/customers" component={Customer}/>
-            <Route path = "/products" component={Product}/>
+            <Route path="/branches" component={Branches}/>
+            <Route path ="/accounts" component={Accounts}/>
+            <Route path ="/customers" component={Customers}/>
+            <Route path = "/products" component={Products}/>
         </div>    
       </Router>
       

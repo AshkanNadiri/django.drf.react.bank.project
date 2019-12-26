@@ -9,10 +9,10 @@ function Header() {
       <header style={headerStyle}>
             <h1 style= {{color: '#fff'}}> MRM BANK</h1>
             <Link style={linkStyle} to="/">home</Link>
-            <Link style={linkStyle} to="/branch">branch</Link>
-            <Link style={linkStyle} to="/account">account</Link>
-            <Link style={linkStyle} to="/customer">customer</Link>   
-            <Link style={linkStyle} to="/product"> product</Link> 
+            <Link style={linkStyle} to="/branch">branches</Link>
+            <Link style={linkStyle} to="/account">accounts</Link>
+            <Link style={linkStyle} to="/customer">customers</Link>   
+            <Link style={linkStyle} to="/product"> products</Link> 
       </header>
     )
    
