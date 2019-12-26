@@ -11,6 +11,7 @@ gunicorn = "*"
 django-heroku = "*"
 djangorestframework = "*"
 django-phone-field = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.8"
