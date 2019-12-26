@@ -32,11 +32,7 @@ class Branch extends Component {
 
     //refresh branch list
     refreshBranches= () => {
-        axios.get('https://bank-django-drf-local.herokuapp.com/branch/',{
-            headers: {
-                'Access-Control-Allow-Origin': true,
-              },
-        })
+        axios.get('https://bank-django-drf-local.herokuapp.com/branch/')
             .then(res => this.setState({branches: res.data.results}))
             .catch(err=> console.log(err))
     }
