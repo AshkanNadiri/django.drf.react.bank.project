@@ -31,19 +31,21 @@ class Branch extends Component {
 
 
     //refresh branch list
-    refreshBranches= () => {
+    refreshBranches= (branch) => {
+        console.log(`${branch} @ ${Date.now().toString()}`)
         axios.get('https://bank-django-drf-local.herokuapp.com/branches/')
             .then(res => this.setState({branches: res.data.results}))
             .catch(err=> console.log(err))
     }
     //Add item
     addItem = (branch) => {
-        console.log(branch)
-        axios.post('https://bank-django-drf-local.herokuapp.com/branches/', {
-            branch
-        },custom_options)
-            .then(res => this.setState({ branches: [...this.state.branches, res.data.results]}))
-            .catch(err => console.log(err))
+        // console.log(`${branch} @ ${Date.now().toString()}`)
+        axios
+        .post('https://bank-django-drf-local.herokuapp.com/branches/',
+        {'branch' : branch, 'address' : 'default address'}
+        ,custom_options)
+        .then(res => this.setState({ branches: [...this.state.branches, res.data.results]}))
+        .catch(err => console.log(err))
     }
      //Delete branch
     delBranch = (id) => {
