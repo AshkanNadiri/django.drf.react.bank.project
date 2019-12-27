@@ -49,6 +49,11 @@ class Branch extends Component {
             .then(res => this.refreshBranches())
             //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
+    //Edit branch
+    editBranch = (id) => {
+        console.log(id)
+        if(th
+    }
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
@@ -71,6 +76,7 @@ class Branch extends Component {
                     branch={branch} 
                     markDeleted={this.markDeleted} 
                     delBranch={this.delBranch}
+                    editBranch={this.editBranch}
                 />
             </div>
         )

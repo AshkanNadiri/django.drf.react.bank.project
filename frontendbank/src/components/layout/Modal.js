@@ -31,7 +31,7 @@ class Modal extends Component {
                     <button onClick={this.props.delBranch.bind(this, id)}style={delBtnStyle}>
                         Delete
                     </button>
-                    <button style={editBtnStyle}>Edit</button>
+                    <button onClick={this.props.editBranch.bind(this, id)}style={editBtnStyle}>Edit</button>
                 </p>
             </div>
         )
