@@ -7,7 +7,7 @@ Bank App is for making CRUD function between the User and Database. You be able 
 [Frontend](https://bank-drf-react-frontend.herokuapp.com/)
 
 ## Installation 
-In order to run this app you need to install Django to interact with your database tables and install React to build a user interface. You can follow the instruction below to get this started.
+In order to run this app you need to install Django to interact with your database tables and install React to build a user interface. You can follow the instruction below to get this started.<br>
 ([Django](https://www.djangoproject.com/)) use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
 
 ```bash
