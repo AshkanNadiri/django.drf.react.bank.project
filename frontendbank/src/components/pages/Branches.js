@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import Modal from '../layout/Modal';
 import AddItem from '../layout/AddItem'
-// import uuid from 'uuid'
 import axios from 'axios';
 
 
-
-// const api_url = 'https://bank-django-drf-local.herokuapp.com/branch/'
 const custom_options = {
     headers: {
-        'Origin' : 'https://bank-django-drf-local.herokuapp.com',
+        'Origin' : 'http://127.0.0.1:8000/',
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
         'Content-Type' : 'application/json',
@@ -21,6 +18,7 @@ const custom_options = {
 };
 
 class Branch extends Component {
+
     state = {
         branches: []
     }
@@ -33,23 +31,21 @@ class Branch extends Component {
     //refresh branch list
     refreshBranches= (branch) => {
         console.log(`${branch} @ ${Date.now().toString()}`)
-        axios.get('https://bank-django-drf-local.herokuapp.com/branches/')
+        axios.get('http://127.0.0.1:8000/branches/')
             .then(res => this.setState({branches: res.data.results}))
             .catch(err=> console.log(err))
     }
     //Add item
-    addItem = (branch) => {
-        // console.log(`${branch} @ ${Date.now().toString()}`)
+    addItem = (branch, id) => {
+        let body = {"branch": branch , "address" :  "default address"}
         axios
-        .post('https://bank-django-drf-local.herokuapp.com/branches/',
-        {'branch' : branch, 'address' : 'default address'}
-        ,custom_options)
-        .then(res => this.setState({ branches: [...this.state.branches, res.data.results]}))
-        .catch(err => console.log(err))
+            .post('http://127.0.0.1:8000/branches/',body)
+            .then(res => this.setState({ branches: [...this.state.branches, res.data]}))
+            .catch(err => console.log(err))
     }
      //Delete branch
     delBranch = (id) => {
-        axios.delete(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`)
+        axios.delete(`http://127.0.0.1:8000/branches/${id}/`)
             .then(res => this.refreshBranches())
             //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
@@ -66,7 +62,9 @@ class Branch extends Component {
    
  
     renderBranch = () =>  {
+        console.log(this.state.branches)
         return this.state.branches.map((branch) => (
+            
            <div>
                 <Modal 
                     key={branch.id}
