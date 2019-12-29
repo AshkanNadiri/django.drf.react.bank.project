@@ -4,18 +4,6 @@ import AddItem from '../layout/AddItem'
 import axios from 'axios';
 
 
-const custom_options = {
-    headers: {
-        'Origin' : 'http://127.0.0.1:8000/',
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-        'Content-Type' : 'application/json',
-        'Accept' : 'text/html; q=1.0, */*',
-        'X-Requested-With' : 'XMLHttpRequest',
-        'Access-Control-Allow-Headers' : 'X-Requested-With,content-type',
-        'Access-Control-Allow-Credentials' : true,
-    }
-};
 
 class Branch extends Component {
 
@@ -52,7 +40,7 @@ class Branch extends Component {
     //Edit branch
     editBranch = (id) => {
         console.log(id)
-        if(th
+        // if(th
     }
     // Toggle delete
     markDeleted = (id)=>{

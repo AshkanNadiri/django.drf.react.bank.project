@@ -181,3 +181,4 @@ typings/
 .vscode/
 db.sqlite3
 .DS_Store
+AppTest.js
