@@ -31,7 +31,6 @@ class Modal extends Component {
             <div >
                 <div style={itemGetStyle} className="d-flex flex-row">
                     <p 
-                    // style={}this
                     onBlur={this.saveBranch} 
                     contentEditable={this.state.isEditable} 
                     suppressContentEditableWarning={true}>
