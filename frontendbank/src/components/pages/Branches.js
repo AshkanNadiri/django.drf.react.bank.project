@@ -9,6 +9,7 @@ class Branch extends Component {
 
     state = {
         branches: []
+
     }
 
     componentDidMount() {
@@ -38,10 +39,9 @@ class Branch extends Component {
             //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
     //Edit branch
-    editBranch = (id) => {
-        console.log(id)
-        // if(th
-    }
+   
+    
+
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
@@ -52,19 +52,35 @@ class Branch extends Component {
            
         }) });
     }
+
+
+    //Edit Branch
+    editBranch = (id, branch)=> {
+        let body = {
+            branch,
+            address: "default address"
+        }
+        axios.put(`http://127.0.0.1:8000/branches/${id}/`,body)
+            .then((res) => { console.log(res)})
+            
+            .catch(err => console.log(err))
+    }
+    
+
+    
    
  
     renderBranch = () =>  {
         console.log(this.state.branches)
         return this.state.branches.map((branch) => (
             
-           <div>
+           <div key={branch.id}>
                 <Modal 
-                    key={branch.id}
+                    
                     branch={branch} 
                     markDeleted={this.markDeleted} 
                     delBranch={this.delBranch}
-                    editBranch={this.editBranch}
+                    editItem = {this.editBranch}
                 />
             </div>
         )

@@ -2,79 +2,77 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
 class Modal extends Component {
-    itemGetStyle = () => {
-        // if(this.props.branch.deleted){
-        //     return {
-        //         textDecoration : 'line-through'
-        //     }
-        // }else {
-        //     return{
-        //         textDecoration: 'none'
-        //     }
-        // }
-        return {
-            backgroundColor : "#f4f4f4",
-            padding: '4px',
-            borderBottom: '1px solid #555555',
-            textDecoration: this.props.branch.deleted ? 'line-through' : 'none'
-        }
+    state = {
+        choice: 'Edit',
+        isEditable: false,
+        editedName: this.props.branch.branch
     }
     
+    toggleEditble = () => {
+        this.setState({ isEditable : !this.state.isEditable})
+        if(!this.state.isEditable){
+            this.setState({choice: 'confirm Edit'})
+        }else {
+            this.setState({choice: 'Edit'})
+            const {id , branch} = this.props.branch
+            this.props.editItem(id, this.state.editedName)
+        }
+
+    }
+    
+    saveBranch = (branch) => {
+        this.setState({ editedName: branch.target.innerHTML})
+        console.log("branch: " + branch.target.innerHTML)
+    }
    
     render() {
        const {id , branch} = this.props.branch
         return (
-            <div style={this.itemGetStyle()}>
-                <p style={branchItemStyle}>
-                    <input type="checkbox" onChange={this.props.markDeleted.bind(this, id)}/>{' '}
-                    {branch}
-                    <button onClick={this.props.delBranch.bind(this, id)}style={delBtnStyle}>
-                        Delete
-                    </button>
-                    <button onClick={this.props.editBranch.bind(this, id)}style={editBtnStyle}>Edit</button>
-                </p>
+            <div >
+                <div style={itemGetStyle} className="d-flex flex-row">
+                    <p 
+                    // style={}this
+                    onBlur={this.saveBranch} 
+                    contentEditable={this.state.isEditable} 
+                    suppressContentEditableWarning={true}>
+                        {this.state.editedName}
+                    </p>
+                    <div>
+                        <button 
+                        onClick={this.toggleEditble} 
+                        type="button" 
+                        className="btn btn-outline-info">
+                            {this.state.choice}
+                        </button>
+                        <button 
+                        onClick={this.props.delBranch.bind(this, id)} 
+                        type="button" 
+                        className="btn btn-outline-danger">
+                            Delete
+                        </button>
+                    </div>
+                </div>
             </div>
         )
     }
-}
-// Edit button style
-const editBtnStyle = {
-    backgroundColor : '#ff8700',
-    color: 'white',
-    fontSize:'10px',
-    borderRadius: '50%',
-    border: 'none',
-    padding: '3px 2px',
-    cursor: 'pointer',
-    float: 'right',
-    marginRight: '10px'
-}
-// Delete Button Style
-const delBtnStyle = {
-    backgroundColor : '#d70000',
-    color: 'white',
-    fontSize:'10px',
-    borderRadius: '50%',
-    border: 'none',
-    padding: '3px 2px',
-    cursor: 'pointer',
-    float: 'right',
 }
 
 // Proptypes
 Modal.propTypes = {
     Modal: PropTypes.array
 }
-
-//style
-// const branchHolderStyle= {
-//     backgroundColor : "#f4f4f4",
-//     padding: '4px',
-//     borderBottom: '1px solid #555555'
-// }
-const branchItemStyle = {
-    padding: '0',
-    margin: '0'
+const itemGetStyle = {
+    backgroundColor : "#f4f4f4",
+    borderBottom: '1px solid #555555',
+    display: 'flex',
+    flexDirection:'row',
+    justifyContent: 'space-between',
 }
+
+const btnWrapStyle = {
+    // position: 'absolute',
+    // right: '40px'
+}
+
 
 export default Modal;
