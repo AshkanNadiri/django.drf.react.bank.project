@@ -22,10 +22,15 @@ class Branch extends Component {
             .catch(err=> console.log(err))
     }
 
+
     //Add item
     addItem = (branch, id) => {
         let body = {"branch": branch , "address" :  "default address"}
         axios
+<<<<<<< HEAD:src/components/pages/Branches.js
+=======
+
+>>>>>>> staging.frontend.copy:src/components/pages/Branches.js
             .post('https://bank-django-drf-local.herokuapp.com/branches/',body)
             .then(res => this.setState({ branches: [...this.state.branches, res.data]}))
             .catch(err => console.log(err))
@@ -38,6 +43,7 @@ class Branch extends Component {
             //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
  
+
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
@@ -45,6 +51,7 @@ class Branch extends Component {
                branch.deleted = !branch.deleted
            } 
            return branch
+
         }) });
     }
 
@@ -59,11 +66,7 @@ class Branch extends Component {
             .then((res) => { console.log(res)}) 
             .catch(err => console.log(err))
     }
-    
-
-    
-   
- 
+     
     renderBranch = () =>  {
         console.log(this.state.branches)
         return this.state.branches.map((branch) => (

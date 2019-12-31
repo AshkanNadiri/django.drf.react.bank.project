@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
 class Modal extends Component {
+
     state = {
         choice: 'Edit',
         isEditable: false,
@@ -24,10 +25,12 @@ class Modal extends Component {
         this.setState({ editedName: branch.target.innerHTML})
         console.log("branch: " + branch.target.innerHTML)
     }
+
    
     render() {
        const {id , branch} = this.props.branch
         return (
+
             <div >
                 <div style={itemGetStyle} className="d-flex flex-row">
                     <p 
@@ -75,3 +78,4 @@ const btnWrapStyle = {
 
 
 export default Modal;
+
