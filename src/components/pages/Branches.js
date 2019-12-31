@@ -4,18 +4,6 @@ import AddItem from '../layout/AddItem'
 import axios from 'axios';
 
 
-const custom_options = {
-    headers: {
-        'Origin' : 'https://bank-django-drf-local.herokuapp.com/branches/',
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-        'Content-Type' : 'application/json',
-        'Accept' : 'text/html; q=1.0, */*',
-        'X-Requested-With' : 'XMLHttpRequest',
-        'Access-Control-Allow-Headers' : 'X-Requested-With,content-type',
-        'Access-Control-Allow-Credentials' : true,
-    }
-};
 
 class Branch extends Component {
 
@@ -27,28 +15,32 @@ class Branch extends Component {
         this.refreshBranches();
     }
 
-
     //refresh branch list
     refreshBranches= (branch) => {
-        console.log(`${branch} @ ${Date.now().toString()}`)
         axios.get('https://bank-django-drf-local.herokuapp.com/branches/')
             .then(res => this.setState({branches: res.data.results}))
             .catch(err=> console.log(err))
     }
+
+
     //Add item
     addItem = (branch, id) => {
         let body = {"branch": branch , "address" :  "default address"}
         axios
+
             .post('https://bank-django-drf-local.herokuapp.com/branches/',body)
             .then(res => this.setState({ branches: [...this.state.branches, res.data]}))
             .catch(err => console.log(err))
     }
+
      //Delete branch
     delBranch = (id) => {
         axios.delete(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`)
             .then(res => this.refreshBranches())
             //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
+ 
+
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
@@ -56,21 +48,32 @@ class Branch extends Component {
                branch.deleted = !branch.deleted
            } 
            return branch
-           
+
         }) });
     }
-   
- 
+
+
+    //Edit Branch
+    editBranch = (id, branch)=> {
+        let body = {
+            branch,
+            address: "default address"
+        }
+        axios.put(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`,body)
+            .then((res) => { console.log(res)}) 
+            .catch(err => console.log(err))
+    }
+     
     renderBranch = () =>  {
         console.log(this.state.branches)
         return this.state.branches.map((branch) => (
-            
-           <div>
+
+           <div key={branch.id}>
                 <Modal 
-                    key={branch.id}
                     branch={branch} 
                     markDeleted={this.markDeleted} 
                     delBranch={this.delBranch}
+                    editItem = {this.editBranch}
                 />
             </div>
         )

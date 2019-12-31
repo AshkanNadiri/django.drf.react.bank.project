@@ -31,4 +31,8 @@ const headerStyle = {
     borderBottom: '1px solid #555555'
 
 }
+<<<<<<< HEAD
 export default Header
+=======
+export default Header;
+>>>>>>> master.copy
