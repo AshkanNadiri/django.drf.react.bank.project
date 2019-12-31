@@ -2,15 +2,15 @@ import React from 'react'
 
 export default function Home() {
     return (
-        <home style={homeStyle}>
+        <center style={homeStyle}>
             <h3> Click on <strong> Branch</strong> to try this App</h3>
-            <p> Just you know </p>
-        </home>
+            <button className="btn btn-outline-info"> JUST YOU KNOW </button>
+        </center>
     )
 
 }
 
 const homeStyle = {
-    textAlign: 'center',
-    
+    height: '90vh',
+    backgroundColor: 'grey'
 }
