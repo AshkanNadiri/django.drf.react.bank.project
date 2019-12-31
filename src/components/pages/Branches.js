@@ -27,10 +27,6 @@ class Branch extends Component {
     addItem = (branch, id) => {
         let body = {"branch": branch , "address" :  "default address"}
         axios
-<<<<<<< HEAD:src/components/pages/Branches.js
-=======
-
->>>>>>> staging.frontend.copy:src/components/pages/Branches.js
             .post('https://bank-django-drf-local.herokuapp.com/branches/',body)
             .then(res => this.setState({ branches: [...this.state.branches, res.data]}))
             .catch(err => console.log(err))
