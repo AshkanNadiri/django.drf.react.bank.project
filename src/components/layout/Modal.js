@@ -13,10 +13,12 @@ class Modal extends Component {
         this.setState({ isEditable : !this.state.isEditable})
         if(!this.state.isEditable){
             this.setState({choice: 'confirm Edit'})
+            this.divStyle = this.highlight()
         }else {
             this.setState({choice: 'Edit'})
             const {id , branch} = this.props.branch
             this.props.editItem(id, this.state.editedName)
+            this.divStyle = this.default()
         }
 
     }
@@ -25,7 +27,7 @@ class Modal extends Component {
         this.setState({ editedName: branch.target.innerHTML})
         console.log("branch: " + branch.target.innerHTML)
     }
-
+    
    
     render() {
        const {id , branch} = this.props.branch
@@ -35,6 +37,7 @@ class Modal extends Component {
                 <div style={itemGetStyle} className="d-flex flex-row">
                     <p 
                     onBlur={this.saveBranch} 
+                    style={this.divStyle}
                     contentEditable={this.state.isEditable} 
                     suppressContentEditableWarning={true}>
                         {this.state.editedName}
@@ -57,6 +60,22 @@ class Modal extends Component {
             </div>
         )
     }
+    // Edit text highlight
+    highlight = () => {
+        return {
+            border: '1px solid #d6d6ff',
+            backgroundColor: '#d5e9fb',
+            padding: '0 10px',
+            borderRadius: '4px',
+        }
+    }
+    // Edit text highlight
+    default = () => {
+        return {}
+    }
+    // Edit text highlight
+    divStyle = {}
+
 }
 
 // Proptypes
