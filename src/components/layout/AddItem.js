@@ -52,8 +52,4 @@ export class AddItem extends Component {
     }
 }
 
-<<<<<<< HEAD
 export default AddItem
-=======
-export default AddItem
->>>>>>> master.copy
