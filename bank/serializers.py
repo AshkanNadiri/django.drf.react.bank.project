@@ -15,7 +15,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class BranchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Branch
-        fields = ['id','branch','address']
+        fields = ['url','id','branch','address']
 
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
