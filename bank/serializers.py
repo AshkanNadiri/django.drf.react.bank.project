@@ -15,7 +15,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class BranchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Branch
-        fields = ['url','id','branch','address']
+        fields = ['id','branch','address']
 
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -26,7 +26,7 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name="branch-detail")
     class Meta:
         model = Customer
-        fields = ['url','id','bank','customer','gender','email','phone']
+        fields = ['id','bank','customer','gender','email','phone']
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
