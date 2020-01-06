@@ -9,7 +9,7 @@ class Branch(models.Model):
     class Meta:
         verbose_name_plural = "branches"
 
-    def __str__(self):
+    def __str__(self): 
         return f"{self.branch}"
 
 class Customer(models.Model):
