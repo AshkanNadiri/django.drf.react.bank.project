@@ -8,10 +8,6 @@ import axios from 'axios';
 class Branch extends Component {
 
     state = {
-        branchItem: {
-            branch: '',
-            address: ''
-        },
         branches: []
     }
 
@@ -31,7 +27,7 @@ class Branch extends Component {
     addItem = (branch, id) => {
         let body = {"branch": branch , "address" :  "default address"}
         axios
-            .post('https://bank-django-drf-local.herokuapp.com/branches/',body)
+            .post('https://bank-django-drf-local.herokuapp.com/branches/', body)
             .then(res => this.setState({ branches: [...this.state.branches, res.data]}))
             .catch(err => console.log(err))
     }
@@ -46,7 +42,7 @@ class Branch extends Component {
 
     // Toggle delete
     markDeleted = (id)=>{
-        this.setState({ branches: this.state.branches.map(branch => {
+        this.setState({ branchItem: this.state.branchItem.map(branch => {
            if(branch.id === id ){
                branch.deleted = !branch.deleted
            } 
