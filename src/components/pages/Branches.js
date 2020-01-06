@@ -8,6 +8,10 @@ import axios from 'axios';
 class Branch extends Component {
 
     state = {
+        branchItem: {
+            branch: '',
+            address: ''
+        },
         branches: []
     }
 
