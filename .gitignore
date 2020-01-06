@@ -6,8 +6,8 @@ node_modules/
 node_modules
 /.pnp
 .pnp.js
-/AppTest
-AppTest/
+/AppTest.js
+AppTest.js/
 
 # testing
 /coverage
