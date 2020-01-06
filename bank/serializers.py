@@ -23,7 +23,7 @@ class AccountSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id','url','customer','deposite']
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name="branch-detail")
+    url = serializers.HyperlinkedIdentityField(view_name="branch")
     class Meta:
         model = Customer
         fields = ['id','url','bank','customer','gender','email','phone']

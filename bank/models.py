@@ -18,7 +18,7 @@ class Customer(models.Model):
         ('female','FEMALE'),
         ('other','OTHER')
     )
-    bank = models.ForeignKey(Branch, on_delete = models.CASCADE, null = True)
+    bank = models.ForeignKey(Branch, on_delete = models.CASCADE)
     customer = models.CharField(max_length = 200)
     gender = models.CharField(
         max_length = 20,
