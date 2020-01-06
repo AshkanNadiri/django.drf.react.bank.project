@@ -22,7 +22,7 @@ class AccountSerializer(serializers.HyperlinkedModelSerializer):
         model = Account
         fields = ['id','customer','deposite']
 
-class CustomerSerializer(serializers.HyperlinkedModelSerializer):
+class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = ['id','bank','customer','gender','email','phone']
