@@ -15,20 +15,20 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class BranchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Branch
-        fields = ['id','branch','address']
+        fields = ['id','url','branch','address']
 
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Account
-        fields = ['id','customer','deposite']
+        fields = ['id','url','customer','deposite']
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name="branch-detail")
+    url = serializers.HyperlinkedIdentityField(view_name="branch-fields")
     class Meta:
         model = Customer
-        fields = ['id','bank','customer','gender','email','phone']
+        fields = ['id','url','bank','customer','gender','email','phone']
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ['id','account_options','account_type']
+        fields = ['id','url','account_options','account_type']
