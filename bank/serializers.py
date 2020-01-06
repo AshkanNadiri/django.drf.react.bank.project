@@ -25,7 +25,7 @@ class AccountSerializer(serializers.HyperlinkedModelSerializer):
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Customer
-        fields = ['id','bank','customer','gender','email','phone']
+        fields = ['id','branch','customer','gender','email','phone']
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
