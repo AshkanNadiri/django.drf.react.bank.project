@@ -1,5 +1,6 @@
 from django.db import models
 from phone_field import PhoneField
+from django.contrib.auth.models import User
 
 # Branch
 class Branch(models.Model):
@@ -27,6 +28,12 @@ class Customer(models.Model):
     )
     email = models.EmailField(max_length = 200, unique=True,verbose_name='email address')
     phone = PhoneField(blank = True,help_text = "Contact phone number",max_length=10)
+    owner = models.ForeignKey(
+        User,
+        related_name = "cutomers",
+        on_delete = models.CASCADE,
+        null = True
+    )
     
     def __str__(self):
         return f"{self.customer}"
