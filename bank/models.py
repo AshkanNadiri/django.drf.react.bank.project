@@ -20,7 +20,6 @@ class Customer(models.Model):
         ('other','OTHER')
     )
     bank = models.ForeignKey(Branch, on_delete = models.CASCADE)
-    customer = models.CharField(max_length = 200)
     gender = models.CharField(
         max_length = 20,
         choices = gender_options,
@@ -28,9 +27,9 @@ class Customer(models.Model):
     )
     email = models.EmailField(max_length = 200, unique=True,verbose_name='email address')
     phone = PhoneField(blank = True,help_text = "Contact phone number",max_length=10)
-    owner = models.ForeignKey(
+    customer = models.ForeignKey(
         User,
-        related_name = "cutomers",
+        related_name = "customers",
         on_delete = models.CASCADE,
         null = True
     )

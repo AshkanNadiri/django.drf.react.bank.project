@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from .serializers import UserSerializer, GroupSerializer, BranchSerializer, CustomerSerializer, ProductSerializer, AccountSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import Branch, Account, Product, Customer
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -27,8 +27,16 @@ class AccountViewSet(viewsets.ModelViewSet):
     serializer_class = AccountSerializer
 
 class CustomerViewSet(viewsets.ModelViewSet):
-    queryset = Customer.objects.all()
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     serializer_class = CustomerSerializer
+    
+    def get_queryset(self):
+        return self.request.user.customers.all()[1]
+
+    def perform_create(self, serializer):
+        serializer.save(customer = self.request.user)
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
