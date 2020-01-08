@@ -78,6 +78,6 @@ export class Register extends Component {
       </div>
     )
   }
-}
+}   
 
 export default Register
