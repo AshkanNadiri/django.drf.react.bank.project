@@ -6,6 +6,8 @@ import Branches from './components/pages/Branches';
 import Accounts from './components/pages/Accounts';
 import Customers from './components/pages/Customers';
 import Products from './components/pages/Products';
+import Login from './components/accounts/Login';
+import Register from './components/accounts/Register'
 
 
 import './App.css' 
@@ -21,6 +23,8 @@ class App extends Component {
         <div >
             <Header/>
             <Route exact path="/" component={Home} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
             <Route path="/branches" component={Branches}/>
             <Route path ="/accounts" component={Accounts}/>
             <Route path ="/customers" component={Customers}/>

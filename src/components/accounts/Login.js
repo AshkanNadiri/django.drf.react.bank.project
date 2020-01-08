@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-export class Register extends Component {
+export class Login extends Component {
 
   state = {
     username: '',
-    email: '',
-    password: '',
-    password2: ''
+    password: ''
   }
   onSubmit = e => {
     e.preventDefault();
@@ -19,11 +17,11 @@ export class Register extends Component {
 
 
   render() {
-    const {username, email, password, password} = this.state
+    const {username, password } = this.state
     return (
       <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
-          <h2 className="text-center">Register</h2>
+          <h2 className="text-center">Login</h2>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label>Username</label>
@@ -36,16 +34,6 @@ export class Register extends Component {
               />
             </div>
             <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                onChange={this.onChange}
-                value={email}
-              />
-            </div>
-            <div className="form-group">
               <label>Password</label>
               <input
                 type="password"
@@ -55,23 +43,14 @@ export class Register extends Component {
                 value={password}
               />
             </div>
-            <div className="form-group">
-              <label>Confirm Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password2"
-                onChange={this.onChange}
-                value={password2}
-              />
-            </div>
+            
             <div className="form-group">
               <button type="submit" className="btn btn-primary">
-                Register
+                Login
               </button>
             </div>
             <p>
-              Already have an account? <Link to="/login">Login</Link>
+              Don't have an account? <Link to="/register">Login</Link>
             </p>
           </form>
         </div>
@@ -80,4 +59,4 @@ export class Register extends Component {
   }
 }   
 
-export default Register
+export default Login;
