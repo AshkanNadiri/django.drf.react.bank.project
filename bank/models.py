@@ -25,7 +25,7 @@ class Customer(models.Model):
         choices = gender_options,
         default = gender_options[0]
     )
-    email = models.EmailField(max_length = 200, unique=True,verbose_name='email address')
+    email = models.EmailField(max_length = 200, unique=True,verbose_name='email address',null=True)
     phone = PhoneField(blank = True,help_text = "Contact phone number",max_length=10)
     customer = models.ForeignKey(
         User,
