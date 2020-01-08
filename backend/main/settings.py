@@ -139,5 +139,8 @@ STATICFILES_DIRS = (
 if 'DATABASE_URL' in os.environ:
 	import dj_database_url
 	DATABASES = {'default': dj_database_url.config()}
+    
 
+
+    
 CORS_ORIGIN_ALLOW_ALL=True
