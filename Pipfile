@@ -12,6 +12,7 @@ django-heroku = "*"
 djangorestframework = "*"
 django-phone-field = "*"
 django-cors-headers = "*"
+django-rest-knox = "*"
 
 [requires]
 python_version = "3.8"
