@@ -1,16 +1,12 @@
 import { combineReducers } from 'redux'
 import auth from './auth'
+import customers from '../pages/Customers'
 
 
 
-export default combineReducers({ auth })
+export default combineReducers({ 
+  auth,
+  customers
+ })
 
 
-
-
-// function combineReducers() {
-
-// }
-
-
-// export default 
