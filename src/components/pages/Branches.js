@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 
-class Branch extends Component {
+class Branches extends Component {
 
     state = {
         branches: []
@@ -92,4 +92,4 @@ class Branch extends Component {
 
 
 
-export default Branch
+export default Branches
