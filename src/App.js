@@ -11,14 +11,17 @@ import Login from './components/accounts/Login';
 import Register from './components/accounts/Register'
 import PrivateRoute from './components/layout/PrivateRoute'
 import store from './Store'
-
-
+import { loadUser } from './components/action/auth'
 import './App.css' 
 
 
 
 
 class App extends Component {
+
+  componentDidMount () {
+    store.dispatch(loadUser())
+  }
   
   render() {
     return (
