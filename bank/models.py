@@ -14,19 +14,19 @@ class Branch(models.Model):
         return f"{self.branch}"
 
 class Customer(models.Model):
-    gender_options = (
-        ('male','MALE'),
-        ('female','FEMALE'),
-        ('other','OTHER')
-    )
+    # gender_options = (
+    #     ('male','MALE'),
+    #     ('female','FEMALE'),
+    #     ('other','OTHER')
+    # )
     bank = models.ForeignKey(Branch, on_delete = models.CASCADE)
-    gender = models.CharField(
-        max_length = 20,
-        choices = gender_options,
-        default = gender_options[0]
-    )
-    email = models.EmailField(max_length = 200, unique=True,verbose_name='email address',null=True)
-    phone = PhoneField(blank = True,help_text = "Contact phone number",max_length=10)
+    # gender = models.CharField(
+    #     max_length = 20,
+    #     choices = gender_options,
+    #     default = gender_options[0]
+    # )
+    # email = models.EmailField(max_length = 200, unique=True,verbose_name='email address',null=True)
+    # phone = PhoneField(blank = True,help_text = "Contact phone number",max_length=10)
     customer = models.ForeignKey(
         User,
         related_name = "customers",

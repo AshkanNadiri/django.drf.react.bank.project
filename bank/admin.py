@@ -7,7 +7,8 @@ admin.site.register(Branch,BranchAdmin)
 
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('bank','customer','gender','email','phone')
+    list_display = ('customer','bank')
+    # ,'gender','email','phone','bank'
 admin.site.register(Customer, CustomerAdmin)
 
 class AccountAdmin(admin.ModelAdmin):
