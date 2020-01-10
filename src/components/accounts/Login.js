@@ -12,7 +12,7 @@ export class Login extends Component {
     e.preventDefault();
     console.log(this.state)
     axios 
-        .post('https://bank-django-drf-local.herokuapp.com/api/auth/login',this.state)
+        .post('https://bank-django-drf-local.herokuapp.com/user/api/auth/login',this.state)
         .then(res => console.log(res.data))
         .catch(err => console.log(err))
   }
