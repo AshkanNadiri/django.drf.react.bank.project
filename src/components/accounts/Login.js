@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 export class Login extends Component {
 
@@ -9,7 +10,11 @@ export class Login extends Component {
   }
   onSubmit = e => {
     e.preventDefault();
-    console.log('submit')
+    console.log(this.state)
+    axios 
+        .post('https://bank-django-drf-local.herokuapp.com/api/auth/login',this.state)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err))
   }
 
 
