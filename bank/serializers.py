@@ -5,7 +5,8 @@ from .models import Branch, Account, Customer, Product
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['id','url','username','email','groups']
+        fields = '__all__'
+        # ['id','url','username','email','groups']
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -25,7 +26,7 @@ class AccountSerializer(serializers.HyperlinkedModelSerializer):
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Customer
-        fields = ['id','url','customer','bank']
+        fields = ['id','url','bank']
         # 'bank',,'gender','email','phone','gender'
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
