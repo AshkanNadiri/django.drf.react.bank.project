@@ -5,7 +5,7 @@ from rest_framework import routers
 from bank import views as bank_views
 
 router = routers.DefaultRouter()
-# router.register(r'users',bank_views.UserViewSet,basename='users')
+router.register(r'users',bank_views.UserViewSet,basename='users')
 router.register(r'groups',bank_views.GroupViewSet,basename='groups')
 router.register(r'branches',bank_views.BranchViewSet,basename='branches')
 router.register(r'accounts',bank_views.AccountViewSet,basename='accounts')
