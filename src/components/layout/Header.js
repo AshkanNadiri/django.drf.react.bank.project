@@ -15,6 +15,11 @@ export class Header extends Component {
 
         const authLinks = (
             <div style={{float:'right'}}>
+                <span className= "navbar-text mr-3">
+                    <strong>
+                        {user ? `Welcome ${user.username}` : ''}
+                    </strong>
+                </span>
                 <button onClick={this.props.logout}className='nav-link btn btn-info btn-sm text-light'> Logout</button>
                 {/* <Link className="nax-link" to="/register"> Register</Link> 
                 <Link style={linkStyle} to="/login"> Login</Link>  */}
