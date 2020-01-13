@@ -29,11 +29,11 @@ class App extends Component {
         <Router>
           <div >
               <Header/>
-              <Route exact path="/" component={Home} />
+              <PrivateRoute exact path="/" component={Home} />
               <PrivateRoute path="/branches" component={Branches}/>
-              <Route path ="/customers" component={Customers}/>
-              <Route path ="/accounts" component={Accounts}/>
-              <Route path = "/products" component={Products}/>
+              <PrivateRoute path ="/customers" component={Customers}/>
+              <PrivateRoute path ="/accounts" component={Accounts}/>
+              <PrivateRoute path = "/products" component={Products}/>
               <Route path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
           </div>    
