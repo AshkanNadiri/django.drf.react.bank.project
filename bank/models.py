@@ -13,6 +13,14 @@ class Branch(models.Model):
     def __str__(self): 
         return f"{self.branch}"
 
+class Account(models.Model):
+    
+    # customer = models.CharField(max_length=100, null=True)
+    deposite = models.DecimalField(max_digits = 20, decimal_places = 1)
+   
+    def __str__(self):
+        return f"{self.deposite}"
+
 class Customer(models.Model):
     # gender_options = (
     #     ('male','MALE'),
@@ -33,17 +41,16 @@ class Customer(models.Model):
         on_delete = models.CASCADE,
         null = True
     )
+    account = models.ForeignKey(
+        Account,
+        on_delete = models.CASCADE,
+        null = True
+    )
     
     def __str__(self):
         return f"{self.customer}"
 
-class Account(models.Model):
-    
-    customer = models.OneToOneField(Customer, on_delete = models.CASCADE)
-    deposite = models.DecimalField(max_digits = 20, decimal_places = 1)
-   
-    def __str__(self):
-        return f"Customer: {self.customer} - Deposited: $ {self.deposite}"
+
         
 class Product(models.Model):
     account_options = (
