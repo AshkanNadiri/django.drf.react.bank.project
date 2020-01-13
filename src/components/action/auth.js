@@ -57,10 +57,37 @@ export const login = (username, password) => dispatch => {
             dispatch({
                 type: LOGIN_FAIL
             })
+            alert(err.response.data.non_field_errors);
         })
 
 }
+// LOGOUT USER
+export const logout = () => (dispatch, getState) => {
+   
+    //get token from state
+    const token = getState().auth.token
+    //headers
+    const config = {
+        headers: {
+            'Content-Type':'application/json'
+        }
+    }
+    // If token, add to headers config
+    if(token) {
+        config.headers['Authorization'] = `Token ${token}` ;
+    }
 
+    axios.post('https://bank-django-drf-local.herokuapp.com/user/api/auth/logout/',null, config)
+        .then(res => {
+            dispatch ({
+                type: LOGOUT_SUCCESS,
+                payload : res.data
+            })
+        }).catch (err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            
+        })
+}
 
 // export const register = ({username, email, password}) => dispatch => {
 //     const config = {
