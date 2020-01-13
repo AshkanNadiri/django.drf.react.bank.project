@@ -45,7 +45,7 @@ export const login = (username, password) => dispatch => {
     //Request body
     const body = JSON.stringify({username,password})
 
-    axios.post('https://bank-django-drf-local.herokuapp.com/api/auth/login', body, config)
+    axios.post('https://bank-django-drf-local.herokuapp.com/user/api/auth/login', body, config)
         .then(res => {
             dispatch({
                 type: LOGIN_SUCCESS,
