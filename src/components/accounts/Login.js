@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link , Redirect} from 'react-router-dom'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { login } from '../action/auth'
 import axios from 'axios'
+
 
 export class Login extends Component {
 
@@ -8,13 +12,15 @@ export class Login extends Component {
     username: '',
     password: ''
   }
+  static propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+
+  }
   onSubmit = e => {
     e.preventDefault();
     console.log(this.state)
-    axios 
-        .post('https://bank-django-drf-local.herokuapp.com/user/api/auth/login',this.state)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err))
+    this.props.login(this.state.username, this.state.password)
   }
 
 
@@ -22,6 +28,9 @@ export class Login extends Component {
 
 
   render() {
+    if(this.props.isAuthenticated){
+      return <Redirect to='/' />
+    }
     const {username, password } = this.state
     return (
       <div className="col-md-6 m-auto">
@@ -62,6 +71,10 @@ export class Login extends Component {
       </div>
     )
   }
-}   
+} 
 
-export default Login;
+const mapStateToProps = state => ({
+  isAuthenticated : state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, {login})(Login);
