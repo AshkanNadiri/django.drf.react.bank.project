@@ -19,7 +19,7 @@ class Customer(models.Model):
     #     ('female','FEMALE'),
     #     ('other','OTHER')
     # )
-    bank = models.ForeignKey(Branch, on_delete = models.CASCADE)
+    bank = models.ForeignKey(Branch,related_name='bank', on_delete = models.CASCADE)
     # gender = models.CharField(
     #     max_length = 20,
     #     choices = gender_options,
