@@ -35,7 +35,7 @@ export class Header extends Component {
             <div style={headerStyle}>
                 <div>
                   <h1 style= {{color: '#fff',textAlign:'center'}}> MRM BANK</h1>
-                  <Link style={linkStyle} to="/">Home</Link> {' '}
+                  {/* <Link style={linkStyle} to="/">Home</Link> {' '} */}
                   <Link style={linkStyle} to="/branches">Branches</Link> {' '}
                   <Link style={linkStyle} to="/accounts">Accounts</Link> {' '}
                   <Link style={linkStyle} to="/customers">Customers</Link> {' '}

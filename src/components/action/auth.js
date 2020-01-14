@@ -48,7 +48,7 @@ export const login = (username, password) => dispatch => {
 
 }
 //REGISTER USER
-export const register = (username, password, email) => dispatch => {
+export const register = ({username, password, email}) => dispatch => {
     //Headers
     const config = {
         headers: {
