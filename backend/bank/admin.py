@@ -7,11 +7,13 @@ admin.site.register(Branch,BranchAdmin)
 
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('bank','customer','gender','email','phone')
+    list_display = ('customer','bank','account')
+    # ,'gender','email','phone','bank'
 admin.site.register(Customer, CustomerAdmin)
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ('customer','deposite')
+    list_display = ['deposite']
+    
 admin.site.register(Account, AccountAdmin)
 
 class ProductAdmin(admin.ModelAdmin):

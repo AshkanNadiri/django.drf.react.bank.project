@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 
-class Branch extends Component {
+class Branches extends Component {
 
     state = {
         branches: []
@@ -17,27 +17,29 @@ class Branch extends Component {
 
     //refresh branch list
     refreshBranches= (branch) => {
-        axios.get('http://127.0.0.1:8000/branches/')
+        axios.get('https://bank-django-drf-local.herokuapp.com/branches/')
             .then(res => this.setState({branches: res.data.results}))
             .catch(err=> console.log(err))
     }
+
 
     //Add item
     addItem = (branch, id) => {
         let body = {"branch": branch , "address" :  "default address"}
         axios
-            .post('http://127.0.0.1:8000/branches/',body)
+            .post('https://bank-django-drf-local.herokuapp.com/branches/',body)
             .then(res => this.setState({ branches: [...this.state.branches, res.data]}))
             .catch(err => console.log(err))
     }
 
      //Delete branch
     delBranch = (id) => {
-        axios.delete(`http://127.0.0.1:8000/branches/${id}/`)
+        axios.delete(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`)
             .then(res => this.refreshBranches())
             //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
  
+
     // Toggle delete
     markDeleted = (id)=>{
         this.setState({ branches: this.state.branches.map(branch => {
@@ -45,6 +47,7 @@ class Branch extends Component {
                branch.deleted = !branch.deleted
            } 
            return branch
+
         }) });
     }
 
@@ -55,15 +58,11 @@ class Branch extends Component {
             branch,
             address: "default address"
         }
-        axios.put(`http://127.0.0.1:8000/branches/${id}/`,body)
+        axios.put(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`,body)
             .then((res) => { console.log(res)}) 
             .catch(err => console.log(err))
     }
-    
-
-    
-   
- 
+     
     renderBranch = () =>  {
         console.log(this.state.branches)
         return this.state.branches.map((branch) => (
@@ -93,4 +92,4 @@ class Branch extends Component {
 
 
 
-export default Branch
+export default Branches

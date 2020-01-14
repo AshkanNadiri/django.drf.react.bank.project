@@ -5,12 +5,13 @@ from .models import Branch, Account, Customer, Product
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['id','url','username','email','groups']
+        fields = '__all__'
+        # ['id','url','username','email','groups']
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields = ['id','url','name']
+        fields = ['id','name']
 
 class BranchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -20,13 +21,13 @@ class BranchSerializer(serializers.HyperlinkedModelSerializer):
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Account
-        fields = ['id','customer','deposite']
+        fields = ['id','deposite']
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Customer
-        fields = ['id','bank','customer','gender','email','phone']
-
+        fields = ['id','bank','account']
+        # 'bank',,'gender','email','phone','gender'
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product

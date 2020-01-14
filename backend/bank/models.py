@@ -1,5 +1,6 @@
 from django.db import models
 from phone_field import PhoneField
+from django.contrib.auth.models import User
 
 # Branch
 class Branch(models.Model):
@@ -9,35 +10,47 @@ class Branch(models.Model):
     class Meta:
         verbose_name_plural = "branches"
 
-    def __str__(self):
+    def __str__(self): 
         return f"{self.branch}"
 
+class Account(models.Model):
+    
+    # customer = models.CharField(max_length=100, null=True)
+    deposite = models.DecimalField(max_digits = 20, decimal_places = 1)
+   
+    def __str__(self):
+        return f"{self.deposite}"
+
 class Customer(models.Model):
-    gender_options = (
-        ('male','MALE'),
-        ('female','FEMALE'),
-        ('other','OTHER')
+    # gender_options = (
+    #     ('male','MALE'),
+    #     ('female','FEMALE'),
+    #     ('other','OTHER')
+    # )
+    bank = models.ForeignKey(Branch,related_name='bank', on_delete = models.CASCADE)
+    # gender = models.CharField(
+    #     max_length = 20,
+    #     choices = gender_options,
+    #     default = gender_options[0]
+    # )
+    # email = models.EmailField(max_length = 200, unique=True,verbose_name='email address',null=True)
+    # phone = PhoneField(blank = True,help_text = "Contact phone number",max_length=10)
+    customer = models.ForeignKey(
+        User,
+        related_name = "customers",
+        on_delete = models.CASCADE,
+        null = True
     )
-    bank = models.ForeignKey(Branch, on_delete = models.CASCADE, null = True)
-    customer = models.CharField(max_length = 200)
-    gender = models.CharField(
-        max_length = 20,
-        choices = gender_options,
-        default = gender_options[0]
+    account = models.ForeignKey(
+        Account,
+        on_delete = models.CASCADE,
+        null = True
     )
-    email = models.EmailField(max_length = 200, unique=True,verbose_name='email address')
-    phone = PhoneField(blank = True,help_text = "Contact phone number",max_length=10)
     
     def __str__(self):
         return f"{self.customer}"
 
-class Account(models.Model):
-    
-    customer = models.OneToOneField(Customer, on_delete = models.CASCADE)
-    deposite = models.DecimalField(max_digits = 20, decimal_places = 1)
-   
-    def __str__(self):
-        return f"Customer: {self.customer} - Deposited: $ {self.deposite}"
+
         
 class Product(models.Model):
     account_options = (
