@@ -43,7 +43,7 @@ export const login = (username, password) => dispatch => {
             dispatch({
                 type: LOGIN_FAIL
             })
-            // alert(err.response.data.non_field_errors);
+            alert(err.response.data.non_field_errors);
         })
 
 }
@@ -70,7 +70,7 @@ export const register = (username, password, email) => dispatch => {
             dispatch({
                 type: REGISTER_FAIL
             })
-            // alert(err.response.data.non_field_errors);
+            alert(err.response.data.non_field_errors);
         })
 
 }
@@ -106,38 +106,5 @@ export const tokenConfig = getState =>{
       return config
 }
 
-
-
-
-
-
-
-// export const register = ({username, email, password}) => dispatch => {
-//     const config = {
-//         headers: {
-//             'Content-Type': 'application/json',
-//         }
-//     }
-//     const body = JSON.stringify({username, email, password});
-//     axios.post('https://bank-django-drf-local.herokuapp.com/api/auth/register', body, config)
-//     .then(res => {
-//         dispatch({
-//             type: REGISTER_SUCCESS,
-//             payload: res.data,
-//         })})
-//     .catch(err => {
-//         dispatch({type: REGISTER_FAIL});
-//     })
-// }
-
-// export const logout = () => (dispatch, getState) => {
-//     axios.post('https://bank-django-drf-local.herokuapp.com/api/auth/logout', null, tokenConfig(getState))
-//     .then(res => {
-//         dispatch({
-//             type: LOGOUT_SUCCESS,
-//         })
-//     })   
-//     .catch(err => console.log(err));
-// }
 
 
