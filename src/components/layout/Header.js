@@ -14,15 +14,14 @@ export class Header extends Component {
         const { isAuthenticated, user } = this.props.auth;
 
         const authLinks = (
-            <div style={{float:'right'}}>
-                <span className= "navbar-text mr-3">
+            <div style={{float:'right',paddingRight:'10px'}}>
+                <span style={{color:'white'}}className= "navbar-text mr-3">
                     <strong>
                         {user ? `Welcome ${user.username}` : ''}
                     </strong>
+                    
                 </span>
-                <button onClick={this.props.logout}className='nav-link btn btn-info btn-sm text-light'> Logout</button>
-                {/* <Link className="nax-link" to="/register"> Register</Link> 
-                <Link style={linkStyle} to="/login"> Login</Link>  */}
+                <button onClick={this.props.logout}> Logout</button>
             </div>
         )
 

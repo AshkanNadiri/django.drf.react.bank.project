@@ -5,22 +5,8 @@ import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_FAIL,
 
 // Check the token and load user
 export const loadUser = () => (dispatch, getState) => {
-    // user loading
-    dispatch({ type: USER_LOADING });
-    //get token from state
-    const token = getState().auth.token
-    //headers
-    const config = {
-        headers: {
-            'Content-Type':'application/json'
-        }
-    }
-    // If token, add to headers config
-    if(token) {
-        config.headers['Authorization'] = `Token ${token}` ;
-    }
-
-    axios.get('https://bank-django-drf-local.herokuapp.com/user/api/auth/user', config)
+ 
+    axios.get('https://bank-django-drf-local.herokuapp.com/api/auth/user', tokenConfig(getState))
         .then(res => {
             dispatch ({
                 type: USER_LOADED,
@@ -34,7 +20,7 @@ export const loadUser = () => (dispatch, getState) => {
         })
 }
 
-
+// LOGIN USER
 export const login = (username, password) => dispatch => {
     //Headers
     const config = {
@@ -45,7 +31,7 @@ export const login = (username, password) => dispatch => {
     //Request body
     const body = JSON.stringify({username,password})
 
-    axios.post('https://bank-django-drf-local.herokuapp.com/user/api/auth/login', body, config)
+    axios.post('https://bank-django-drf-local.herokuapp.com/api/auth/login', body, config)
         .then(res => {
             dispatch({
                 type: LOGIN_SUCCESS,
@@ -57,27 +43,41 @@ export const login = (username, password) => dispatch => {
             dispatch({
                 type: LOGIN_FAIL
             })
-            alert(err.response.data.non_field_errors);
+            // alert(err.response.data.non_field_errors);
+        })
+
+}
+//REGISTER USER
+export const register = (username, password, email) => dispatch => {
+    //Headers
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    //Request body
+    const body = JSON.stringify({username,password, email})
+
+    axios.post('https://bank-django-drf-local.herokuapp.com/api/auth/register', body, config)
+        .then(res => {
+            dispatch({
+                type: REGISTER_SUCCESS,
+                payload: res.data
+            })
+        })
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status))
+            dispatch({
+                type: REGISTER_FAIL
+            })
+            // alert(err.response.data.non_field_errors);
         })
 
 }
 // LOGOUT USER
 export const logout = () => (dispatch, getState) => {
-   
-    //get token from state
-    const token = getState().auth.token
-    //headers
-    const config = {
-        headers: {
-            'Content-Type':'application/json'
-        }
-    }
-    // If token, add to headers config
-    if(token) {
-        config.headers['Authorization'] = `Token ${token}` ;
-    }
 
-    axios.post('https://bank-django-drf-local.herokuapp.com/user/api/auth/logout/',null, config)
+    axios.post('https://bank-django-drf-local.herokuapp.com/api/auth/logout/',null, tokenConfig(getState))
         .then(res => {
             dispatch ({
                 type: LOGOUT_SUCCESS,
@@ -88,6 +88,29 @@ export const logout = () => (dispatch, getState) => {
             
         })
 }
+
+// setup config with token -helper function 
+export const tokenConfig = getState =>{
+      //get token from state
+      const token = getState().auth.token
+      //headers
+      const config = {
+          headers: {
+              'Content-Type':'application/json'
+          }
+      }
+      // If token, add to headers config
+      if(token) {
+          config.headers['Authorization'] = `Token ${token}` ;
+      }
+      return config
+}
+
+
+
+
+
+
 
 // export const register = ({username, email, password}) => dispatch => {
 //     const config = {
@@ -117,16 +140,4 @@ export const logout = () => (dispatch, getState) => {
 //     .catch(err => console.log(err));
 // }
 
-// export const tokenConfig = getState => {
-//     const token = getState().auth.token;
-//     const config = {
-//         headers: {
-//             'Content-Type': 'application/json',
-//         }
-//     }
-//     if(token) {
-//         config.headers['Authorization'] = `Token ${token}`
-//     }
 
-//     return config;
-// }
