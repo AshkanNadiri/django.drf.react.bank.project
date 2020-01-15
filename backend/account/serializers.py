@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
     user_permissions = PermissionSerializer(many=True)
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('id','username','email','user_permissions')
     def create(self, validated_data):
         permissions_data = validated_data.pop('user_permissions')
         user = User.objects.create(**validated_data)
