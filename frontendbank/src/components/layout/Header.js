@@ -17,18 +17,18 @@ export class Header extends Component {
             <div style={{float:'right',paddingRight:'10px'}}>
                 <span style={{color:'white'}}className= "navbar-text mr-3">
                     <strong>
-                        {user ? `Welcome ${user.username}` : ''}
+                        {user ? `Welcome "${user.username}"` : ''}
                     </strong>
                     
                 </span>
-                <button onClick={this.props.logout}> Logout</button>
+                <button className="btn btn-warning"onClick={this.props.logout}> Logout</button>
             </div>
         )
 
         const guestLinks = (
             <div style={{float:'right'}}>
-                <Link className="nax-link" to="/register"> Register</Link> 
-                <Link style={linkStyle} to="/login"> Login</Link> 
+                <Link className="nax-link" to="/register"> Register</Link> {' '}
+                <button className="btn btn-primary"><Link style={linkStyle} to="/login"> Login</Link></button>
              </div>
         )
         return (  
@@ -36,7 +36,7 @@ export class Header extends Component {
                 <div>
                   <h1 style= {{color: '#fff',textAlign:'center'}}> MRM BANK</h1>
                   {/* <Link style={linkStyle} to="/">Home</Link> {' '} */}
-                  <button className='btn btn-primary'>
+                  <button className='btn btn-info'>
                     <Link style={linkStyle} to="/branches">Branches</Link> {' '}
                   </button>
                   

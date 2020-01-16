@@ -45,7 +45,7 @@ export class Register extends Component {
         email,
         groups
       }
-     
+      console.log(newUser)
       this.props.register(newUser)
     }
   }
