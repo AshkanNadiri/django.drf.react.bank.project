@@ -61,7 +61,7 @@ export class Register extends Component {
   }
   renderGroupOptions(){
     return this.state.groupList.map(groups => (
-      <option key={groups.id} value={Number(groups.id)}>{groups.name}</option>
+      <option key={groups.id} value={groups.id}>{groups.name}</option>
     ))
   }
 
