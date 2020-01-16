@@ -31,9 +31,9 @@ class App extends Component {
               <Header/>
               {/* <PrivateRoute exact path="/" component={Home} /> */}
               <PrivateRoute path="/branches" component={Branches}/>
-              <PrivateRoute path ="/customers" component={Customers}/>
+              {/* <PrivateRoute path ="/customers" component={Customers}/>
               <PrivateRoute path ="/accounts" component={Accounts}/>
-              <PrivateRoute path = "/products" component={Products}/>
+              <PrivateRoute path = "/products" component={Products}/> */}
               <Route path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
           </div>    

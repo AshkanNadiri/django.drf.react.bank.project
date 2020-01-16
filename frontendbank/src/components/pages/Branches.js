@@ -8,7 +8,10 @@ import axios from 'axios';
 class Branches extends Component {
 
     state = {
-        branches: []
+        branches: [],
+        showBfa: false,
+        showBd: false,
+        showChase:true
     }
 
     componentDidMount() {
@@ -18,7 +21,18 @@ class Branches extends Component {
     //refresh branch list
     refreshBranches= (branch) => {
         axios.get('http://127.0.0.1:8000/branches/')
-            .then(res => this.setState({branches: res.data.results}))
+            .then(res => {
+                // this.setState({branches: res.data.results})
+                let displayBanks = res.data.results;
+                if(this.state.showBfa){
+                    this.setState({branches: [displayBanks[0]]})
+                }else if(this.state.showBd){
+                    this.setState({branches: [displayBanks[1]]})
+                }else {
+                    this.setState({branches: [displayBanks[2]]})
+                }
+            })
+            
             .catch(err=> console.log(err))
     }
 
