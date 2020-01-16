@@ -20,7 +20,7 @@ class Branches extends Component {
 
     //refresh branch list
     refreshBranches= (branch) => {
-        axios.get('http://127.0.0.1:8000/branches/')
+        axios.get('https://bank-django-drf-local.herokuapp.com/branches/')
             .then(res => {
                  //this.setState({branches: res.data.results})
                 let displayBanks = res.data.results;
@@ -42,14 +42,14 @@ class Branches extends Component {
     addItem = (branch, id) => {
         let body = {"branch": branch , "address" :  "default address"}
         axios
-            .post('http://127.0.0.1:8000/branches/',body)
+            .post('https://bank-django-drf-local.herokuapp.com/branches/',body)
             .then(res => this.setState({ branches: [...this.state.branches, res.data]}))
             .catch(err => console.log(err))
     }
 
      //Delete branch
     delBranch = (id) => {
-        axios.delete(`http://127.0.0.1:8000/branches/${id}/`)
+        axios.delete(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`)
             .then(res => this.refreshBranches())
             //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
@@ -73,7 +73,7 @@ class Branches extends Component {
             branch,
             address: "default address"
         }
-        axios.put(`http://127.0.0.1:8000/branches/${id}/`,body)
+        axios.put(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`,body)
             .then((res) => { console.log(res)}) 
             .catch(err => console.log(err))
     }

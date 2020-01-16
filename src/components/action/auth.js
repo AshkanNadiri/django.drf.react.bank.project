@@ -83,7 +83,7 @@ export const register = ({username, password, email,groups }) => dispatch => {
 export const logout = () => (dispatch, getState) => {
 
 
-    axios.post('http://127.0.0.1:8000/api/auth/logout/',null, tokenConfig(getState))
+    axios.post('https://bank-django-drf-local.herokuapp.com/api/auth/logout/',null, tokenConfig(getState))
         .then(res => {
             dispatch ({
                 type: LOGOUT_SUCCESS,
