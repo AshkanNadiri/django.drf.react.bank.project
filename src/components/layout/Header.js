@@ -1,51 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { relative } from 'path';
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+import {logout } from '../action/auth'
 
-
-
-function Header() {
-    return (
-    //     <nav className="navbar navbar-expand-sm navbar-light bg-light">
-    //     <div className="container">
-    //       <button
-    //         className="navbar-toggler"
-    //         type="button"
-    //         data-toggle="collapse"
-    //         data-target="#navbarTogglerDemo01"
-    //         aria-controls="navbarTogglerDemo01"
-    //         aria-expanded="false"
-    //         aria-label="Toggle navigation"
-    //       >
-    //         <span className="navbar-toggler-icon" />
-    //       </button>
-    //       <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-    //         <a className="navbar-brand" href="#">
-    //           Lead Manager
-    //         </a>
-    //       </div>
-    //     </div>
-    //   </nav>
-
-
+export class Header extends Component {
+    static propTypes = {
+        auth: PropTypes.object.isRequired,
+        logout: PropTypes.func.isRequired
+    }
+    render () {
+        const { isAuthenticated, user } = this.props.auth;
         
-      <div style={headerStyle}>
-          <div>
-            <h1 style= {{color: '#fff',textAlign:'center'}}> MRM BANK</h1>
-            <Link style={linkStyle} to="/">Home</Link> {' '}
-            <Link style={linkStyle} to="/branches">Branches</Link> {' '}
-            <Link style={linkStyle} to="/accounts">Accounts</Link> {' '}
-            <Link style={linkStyle} to="/customers">Customers</Link> {' '}
-            <Link style={linkStyle} to="/products"> Products</Link> 
-            <div style={{float:'right'}}>
-                <Link className="nax-link" to="/register"> Register</Link> 
-                <Link style={linkStyle} to="/login"> Login</Link> 
+        const authLinks = (
+            <div style={{float:'right',paddingRight:'10px'}}>
+                <span style={{color:'white'}}className= "navbar-text mr-3">
+                    <strong>
+                        {user ? `Welcome "${user.username}"` : ''}
+                    </strong>
+                    
+                </span>
+                <button className="btn btn-warning"onClick={this.props.logout}> Logout</button>
             </div>
-          </div>       
-      </div>
-    )
-   
+        )
+
+        const guestLinks = (
+            <div style={{float:'right'}}>
+                <Link className="nax-link" to="/register"> Register</Link> {' '}
+                <button className="btn btn-primary"><Link style={linkStyle} to="/login"> Login</Link></button>
+             </div>
+        )
+        return (  
+            <div style={headerStyle}>
+                <div>
+                  <h1 style= {{color: '#fff',textAlign:'center'}}> MRM BANK</h1>
+                  {/* <Link style={linkStyle} to="/">Home</Link> {' '} */}
+                  <button className='btn btn-info'>
+                    <Link style={linkStyle} to="/branches">Branches</Link> {' '}
+                  </button>
+                  
+                  {/* <Link style={linkStyle} to="/accounts">Accounts</Link> {' '}
+                  <Link style={linkStyle} to="/customers">Customers</Link> {' '}
+                  <Link style={linkStyle} to="/products"> Products</Link>  */}
+                  {isAuthenticated ? authLinks : guestLinks} 
+                </div> 
+                     
+            </div>
+          )
+    }
 }
+
+
+
 const linkStyle = {
     color: '#fff',
     padding: '10px',
@@ -57,8 +64,11 @@ const headerStyle = {
 
     padding: '10',
     background: '#333333',
-    borderBottom: '1px solid #555555'
+    borderBottom: '1px solid #555555',
+    height: '100px'
 
 }
-
-export default Header;
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+export default connect(mapStateToProps, {logout})(Header);

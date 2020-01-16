@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Customer() {
+export default function Customers() {
     return (
-        <customer>
-            <h1>This customer page</h1>
-        </customer>
+        <product>
+            <h1>Customers</h1>
+        </product>
     )
 }

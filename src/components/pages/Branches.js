@@ -5,10 +5,13 @@ import axios from 'axios';
 
 
 
-class Branch extends Component {
+class Branches extends Component {
 
     state = {
-        branches: []
+        branches: [],
+        showBFA: false,
+        showWF: true,
+        showChase:false
     }
 
     componentDidMount() {
@@ -17,8 +20,20 @@ class Branch extends Component {
 
     //refresh branch list
     refreshBranches= (branch) => {
-        axios.get('https://bank-django-drf-local.herokuapp.com/branches/')
-            .then(res => this.setState({branches: res.data.results}))
+        axios.get('http://127.0.0.1:8000/branches/')
+            .then(res => {
+                 //this.setState({branches: res.data.results})
+                let displayBanks = res.data.results;
+                console.log(res.data.results)
+                if(this.state.showBFA){
+                    this.setState({branches: [displayBanks[0]]})
+                }else if(this.state.showWF){
+                    this.setState({branches: [displayBanks[2]]})
+                }else {
+                    this.setState({branches: [displayBanks[1]]})
+                }
+            })
+            
             .catch(err=> console.log(err))
     }
 
@@ -27,14 +42,14 @@ class Branch extends Component {
     addItem = (branch, id) => {
         let body = {"branch": branch , "address" :  "default address"}
         axios
-            .post('https://bank-django-drf-local.herokuapp.com/branches/',body)
+            .post('http://127.0.0.1:8000/branches/',body)
             .then(res => this.setState({ branches: [...this.state.branches, res.data]}))
             .catch(err => console.log(err))
     }
 
      //Delete branch
     delBranch = (id) => {
-        axios.delete(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`)
+        axios.delete(`http://127.0.0.1:8000/branches/${id}/`)
             .then(res => this.refreshBranches())
             //.setState({ branches: [...this.state.branches.filter(branch => branch.id !== id)]})
     }
@@ -58,7 +73,7 @@ class Branch extends Component {
             branch,
             address: "default address"
         }
-        axios.put(`https://bank-django-drf-local.herokuapp.com/branches/${id}/`,body)
+        axios.put(`http://127.0.0.1:8000/branches/${id}/`,body)
             .then((res) => { console.log(res)}) 
             .catch(err => console.log(err))
     }
@@ -92,4 +107,4 @@ class Branch extends Component {
 
 
 
-export default Branch
+export default Branches
