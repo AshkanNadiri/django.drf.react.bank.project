@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { register} from '../action/auth'
 import { createMessage }from '../action/messages'
+import axios  from 'axios'
 
 export class Register extends Component {
 
@@ -11,16 +12,27 @@ export class Register extends Component {
     username: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
+    groups: [1],
+    groupList: []
+  }
+
+  componentDidMount(){
+    this.getGroups()
   }
   static propTypes = {
     register: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool
 
   }
+  getGroups(){
+    axios.get('http://127.0.0.1:8000/groups/')
+      .then(res => this.setState({groupList: res.data.results}))
+      .catch(err => console.log(err))
+  }
   onSubmit = e => {
     e.preventDefault();
-    const { username, email, password, password2 } = this.state;
+    const { username, email, password, password2,groups} = this.state;
     if (password !== password2){
       console.log('message does not match')
       this.props.createMessage ({
@@ -30,14 +42,28 @@ export class Register extends Component {
       const newUser = {
         username,
         password,
-        email
+        email,
+        groups
       }
+     
       this.props.register(newUser)
     }
   }
 
 
   onChange = e => this.setState({ [e.target.name] : e.target.value})
+
+  onChangeGroup = e => {
+    e.preventDefault()
+    const { value } = e.target;
+    // console.log(typeof(value))
+    this.setState({groups: [parseInt(value)]})
+  }
+  renderGroupOptions(){
+    return this.state.groupList.map(groups => (
+      <option key={groups.id} value={Number(groups.id)}>{groups.name}</option>
+    ))
+  }
 
 
   render() {
@@ -80,6 +106,7 @@ export class Register extends Component {
                 value={password}
               />
             </div>
+            
             <div className="form-group">
               <label>Confirm Password</label>
               <input
@@ -89,6 +116,15 @@ export class Register extends Component {
                 onChange={this.onChange}
                 value={password2}
               />
+            </div>
+            <div className="form-group">
+              <label>Group</label>
+              <select
+                className="form-control"
+                name="groups"
+                onChange={this.onChangeGroup}>
+                  {this.renderGroupOptions()}
+              </select>
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-primary">

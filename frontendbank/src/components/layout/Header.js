@@ -12,7 +12,7 @@ export class Header extends Component {
     }
     render () {
         const { isAuthenticated, user } = this.props.auth;
-
+        
         const authLinks = (
             <div style={{float:'right',paddingRight:'10px'}}>
                 <span style={{color:'white'}}className= "navbar-text mr-3">
@@ -36,10 +36,13 @@ export class Header extends Component {
                 <div>
                   <h1 style= {{color: '#fff',textAlign:'center'}}> MRM BANK</h1>
                   {/* <Link style={linkStyle} to="/">Home</Link> {' '} */}
-                  <Link style={linkStyle} to="/branches">Branches</Link> {' '}
-                  <Link style={linkStyle} to="/accounts">Accounts</Link> {' '}
+                  <button className='btn btn-primary'>
+                    <Link style={linkStyle} to="/branches">Branches</Link> {' '}
+                  </button>
+                  
+                  {/* <Link style={linkStyle} to="/accounts">Accounts</Link> {' '}
                   <Link style={linkStyle} to="/customers">Customers</Link> {' '}
-                  <Link style={linkStyle} to="/products"> Products</Link> 
+                  <Link style={linkStyle} to="/products"> Products</Link>  */}
                   {isAuthenticated ? authLinks : guestLinks} 
                 </div> 
                      
