@@ -12,7 +12,6 @@ export class Header extends Component {
     }
     render () {
         const { isAuthenticated, user } = this.props.auth;
-        
         const authLinks = (
             <div style={{float:'right',paddingRight:'10px'}}>
                 <span style={{color:'white'}}className= "navbar-text mr-3">
@@ -22,6 +21,7 @@ export class Header extends Component {
                     
                 </span>
                 <button className="btn btn-warning"onClick={this.props.logout}> Logout</button>
+
             </div>
         )
 
@@ -39,7 +39,6 @@ export class Header extends Component {
                   <button className='btn btn-info'>
                     <Link style={linkStyle} to="/branches">Branches</Link> {' '}
                   </button>
-                  
                   {/* <Link style={linkStyle} to="/accounts">Accounts</Link> {' '}
                   <Link style={linkStyle} to="/customers">Customers</Link> {' '}
                   <Link style={linkStyle} to="/products"> Products</Link>  */}

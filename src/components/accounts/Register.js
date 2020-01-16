@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { register} from '../action/auth'
 import { createMessage }from '../action/messages'
+
 import axios  from 'axios'
 
 export class Register extends Component {
@@ -30,9 +31,17 @@ export class Register extends Component {
       .then(res => this.setState({groupList: res.data.results}))
       .catch(err => console.log(err))
   }
+  static propTypes = {
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+
+  }
   onSubmit = e => {
     e.preventDefault();
+
     const { username, email, password, password2,groups} = this.state;
+
+
     if (password !== password2){
       console.log('message does not match')
       this.props.createMessage ({
@@ -45,7 +54,6 @@ export class Register extends Component {
         email,
         groups
       }
-      console.log(newUser)
       this.props.register(newUser)
     }
   }
