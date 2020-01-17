@@ -23,6 +23,7 @@ class App extends Component {
     store.dispatch(loadUser())
   }
   
+  
   render() {
     return (
       <Provider store = {store}>
@@ -39,6 +40,7 @@ class App extends Component {
           </div>    
         </Router>
       </Provider>
+      
       
       
       

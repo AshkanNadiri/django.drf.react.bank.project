@@ -27,7 +27,7 @@ export class Login extends Component {
 
   render() {
     if(this.props.isAuthenticated){
-      return <Redirect to='/login'/>
+      return <Redirect to='/branches'/>
     }
     const {username, password } = this.state
     return (
@@ -70,6 +70,13 @@ export class Login extends Component {
     )
   }
 } 
+
+// browser.runtime.onMessage.addListener(message => {
+//   console.log("background: onMessage", message);
+
+//   // Add this line:
+//   return Promise.resolve("Dummy response to keep the console quiet");
+// });
 
 const mapStateToProps = state => ({
   isAuthenticated : state.auth.isAuthenticated
