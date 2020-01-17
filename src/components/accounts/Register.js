@@ -27,7 +27,7 @@ export class Register extends Component {
 
   }
   getGroups(){
-    axios.get('http://127.0.0.1:8000/groups/')
+    axios.get('hhttps://bank-django-drf-local.herokuapp.com/groups/')
       .then(res => this.setState({groupList: res.data.results}))
       .catch(err => console.log(err))
   }
