@@ -12,7 +12,7 @@ class Modal extends Component {
     toggleEditble = () => {
         this.setState({ isEditable : !this.state.isEditable})
         if(!this.state.isEditable){
-            this.setState({choice: 'confirm Edit'})
+            this.setState({choice: 'Confirm Edit'})
             this.divStyle = this.highlight()
         }else {
             this.setState({choice: 'Edit'})

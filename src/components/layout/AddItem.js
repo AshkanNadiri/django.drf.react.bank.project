@@ -15,6 +15,7 @@ export class AddItem extends Component {
         this.setState({ branch: ''})
         document.getElementById('branch_submit').value = null
     }
+    
     render() {
         return (
             <form onSubmit={this.onSubmit}style= {{display:'flex'}}>
