@@ -1,8 +1,13 @@
 import axios from 'axios';
 import { returnErrors } from './messages'
 import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_FAIL,
-    LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from './types'
+    LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS,RESET_PASSWORD } from './types'
 
+
+// Reset password
+export const resetPassword = () =>(old_password, new_password) => {
+    // axios
+}
 // Check the token and load user
 export const loadUser = () => (dispatch, getState) => {
  

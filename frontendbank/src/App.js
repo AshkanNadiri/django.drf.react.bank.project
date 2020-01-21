@@ -7,12 +7,13 @@ import Branches from './components/pages/Branches';
 import Accounts from './components/pages/Accounts';
 import Customers from './components/pages/Customers';
 import Products from './components/pages/Products';
+import ResetPassword from './components/accounts/ResetPassword';
 import Login from './components/accounts/Login';
-import Register from './components/accounts/Register'
-import PrivateRoute from './components/layout/PrivateRoute'
-import store from './Store'
-import { loadUser } from './components/action/auth'
-import './App.css' 
+import Register from './components/accounts/Register';
+import PrivateRoute from './components/layout/PrivateRoute';
+import store from './Store';
+import { loadUser } from './components/action/auth';
+import './App.css' ;
 
 
 
@@ -34,8 +35,10 @@ class App extends Component {
               {/* <PrivateRoute path ="/customers" component={Customers}/>
               <PrivateRoute path ="/accounts" component={Accounts}/>
               <PrivateRoute path = "/products" component={Products}/> */}
+              <Route path="/resetpassword" component={ResetPassword}/>
               <Route path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              
           </div>    
         </Router>
       </Provider>
