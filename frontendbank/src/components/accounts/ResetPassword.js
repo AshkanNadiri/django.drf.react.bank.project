@@ -13,6 +13,7 @@ export class ResetPassword extends Component {
   // on submit target the property of old and new password
   onSubmit = e => {
     e.preventDefault();
+    console.log('submit')
     this.props.resetPassword(this.state.oldPassword,this.state.newPassword)
   }
   // Saving the value of inserted input
