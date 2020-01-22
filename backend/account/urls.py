@@ -5,8 +5,7 @@ from knox import views as knox_views
 
 urlpatterns = [
   path('api/auth', include('knox.urls')),
-  # path('api/auth/reset-password',auth_views.PasswordChangeView.as_view()),
-  path('api/auth/resetpass', PasswordAPI.as_view()),
+  path('password', PasswordAPI.as_view()),
   path('api/auth/register', RegisterAPI.as_view()),
   path('api/auth/login', LoginAPI.as_view()),
   path('api/auth/user', UserAPI.as_view()),

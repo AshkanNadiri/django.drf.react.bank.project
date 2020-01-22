@@ -1,12 +1,36 @@
 import axios from 'axios';
 import { returnErrors } from './messages'
 import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_FAIL,
-    LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS,RESET_PASSWORD } from './types'
+    LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS,RESET_PASSWORD,RESET_FAIL
+ } from './types'
 
 
 // Reset password
-export const resetPassword = () =>(old_password, new_password) => {
-    // axios
+export const resetPassword = (username, password) => (dispatch, getState) => {
+    //Header 
+    const config = {
+        headers:{
+            'Content-Type': 'application/json',
+        }
+    }
+    //Request body
+    const body = JSON.stringify({username, password})
+
+    axios
+        .put('http://127.0.0.1:8000/password',body ,tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: RESET_PASSWORD,
+                payload: res.data
+            });
+            alert('Password successfully changed. Please login with the new password')
+        }).catch(err => {
+            dispatch ({
+                type: RESET_FAIL
+            })
+            alert('Username not found')
+            console.log('error')
+        });
 }
 // Check the token and load user
 export const loadUser = () => (dispatch, getState) => {

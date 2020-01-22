@@ -74,31 +74,31 @@ class PasswordSerializer(serializers.Serializer):
             raise serializers.ValidationError("Password should be different")
         return data
 
-    def validate_password(self, value):
-        """
-        check if new password meets the specs
-        min 1 lowercase and 1 uppercase alphabet
-        1 number
-        1 special character
-        8-16 character length
-        """
+    # def validate_password(self, value):
+    #     """
+    #     check if new password meets the specs
+    #     min 1 lowercase and 1 uppercase alphabet
+    #     1 number
+    #     1 special character
+    #     8-16 character length
+    #     """
 
-        if len(value) < 8 or len(value) > 16:
-            raise serializers.ValidationError("It should be between 8 and 16 characters long")
+    #     if len(value) < 8 or len(value) > 16:
+    #         raise serializers.ValidationError("It should be between 8 and 16 characters long")
 
-        if not any(x.isupper() for x in value):
-            raise serializers.ValidationError("It should have at least one upper case alphabet")
+    #     if not any(x.isupper() for x in value):
+    #         raise serializers.ValidationError("It should have at least one upper case alphabet")
 
-        if not any(x.islower() for x in value):
-            raise serializers.ValidationError("It should have at least one lower case alphabet")
+    #     if not any(x.islower() for x in value):
+    #         raise serializers.ValidationError("It should have at least one lower case alphabet")
 
-        if not any(x.isdigit() for x in value):
-            raise serializers.ValidationError("It should have at least one number")
+    #     if not any(x.isdigit() for x in value):
+    #         raise serializers.ValidationError("It should have at least one number")
 
-        valid_special_characters = {'@', '_', '!', '#', '$', '%', '^', '&', '*', '(', ')',
-                                    '<', '>', '?', '/', '|', '{', '}', '~', ':'}
+    #     valid_special_characters = {'@', '_', '!', '#', '$', '%', '^', '&', '*', '(', ')',
+    #                                 '<', '>', '?', '/', '|', '{', '}', '~', ':'}
 
-        if not any(x in valid_special_characters for x in value):
-            raise serializers.ValidationError("It should have at least one special character")
+    #     if not any(x in valid_special_characters for x in value):
+    #         raise serializers.ValidationError("It should have at least one special character")
 
-        return value
+    #     return value

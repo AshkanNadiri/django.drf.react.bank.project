@@ -9,9 +9,7 @@ class Branches extends Component {
 
     state = {
         branches: [],
-        showBFA: false,
-        showWF: true,
-        showChase:false
+        
     }
 
     componentDidMount() {
@@ -22,16 +20,7 @@ class Branches extends Component {
     refreshBranches= (branch) => {
         axios.get('http://127.0.0.1:8000/branches/')
             .then(res => {
-                 //this.setState({branches: res.data.results})
-                let displayBanks = res.data.results;
-                console.log(res.data.results)
-                if(this.state.showBFA){
-                    this.setState({branches: [displayBanks[0]]})
-                }else if(this.state.showWF){
-                    this.setState({branches: [displayBanks[2]]})
-                }else {
-                    this.setState({branches: [displayBanks[1]]})
-                }
+                 this.setState({branches: res.data.results})
             })
             
             .catch(err=> console.log(err))

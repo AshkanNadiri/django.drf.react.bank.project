@@ -45,7 +45,7 @@ class UserAPI(generics.RetrieveAPIView):
 class PasswordAPI(APIView):
 
     def get_object(self, username):
-        user = generics.get_object_or_404(User, username=self.request.user.username)
+        user = generics.get_object_or_404(User, username=username)
         return user
 
     def put(self, request):
@@ -64,4 +64,8 @@ class PasswordAPI(APIView):
             user.set_password(new_password)
             user.save()
             return Response({'success':True})
+
+            # res = {key: user.__dict__[key] for key in user.__dict__.keys() & {'username', 'email', 'date_joined'}} 
+
+            # return Response(res)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
