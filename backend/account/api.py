@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions, status
+from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
@@ -44,7 +45,7 @@ class UserAPI(generics.RetrieveAPIView):
 class PasswordAPI(APIView):
 
     def get_object(self, username):
-        user = generics.get_object(User, username=username)
+        user = generics.get_object_or_404(User, username=self.request.user.username)
         return user
 
     def put(self, request):
