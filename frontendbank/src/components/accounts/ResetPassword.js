@@ -7,20 +7,20 @@ import {resetPassword} from '../action/auth'
 export class ResetPassword extends Component {
 
   state = {
-    oldPassword: '',
-    newPassword:''
+    username: '',
+    password:''
   }
   // on submit target the property of old and new password
   onSubmit = e => {
     e.preventDefault();
     console.log('submit')
-    this.props.resetPassword(this.state.oldPassword,this.state.newPassword)
+    this.props.resetPassword(this.state.username,this.state.password)
   }
   // Saving the value of inserted input
   onChange = e => this.setState({[e.taget.name] : e.target.value})
 
   render() {
-    const {oldPassword, newPassword} = this.state
+    const {username, password} = this.state
     return (
       <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
