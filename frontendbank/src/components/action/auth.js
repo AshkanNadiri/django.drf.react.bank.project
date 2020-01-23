@@ -135,5 +135,18 @@ export const tokenConfig = getState =>{
       return config
 }
 
+// export const tokenConfig = getState => {
+//     const token = getState().auth.token
+
+//     const config ={
+//         headers: {
+//             'Content-Type': 
+//         }
+//     }
+
+// }
+
+
+
 
 
