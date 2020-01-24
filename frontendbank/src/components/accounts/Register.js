@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link , Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { register} from '../action/auth'
+import { register } from '../action/auth'
 import { createMessage }from '../action/messages'
 import axios  from 'axios'
 

@@ -20,7 +20,15 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class BranchViewSet(viewsets.ModelViewSet):
     queryset = Branch.objects.all()
+    # permission_classes = [
+    #     permissions.IsAuthenticated
+    # ]
     serializer_class = BranchSerializer
+    # def get_queryset(self, request):
+    #     qs = super().get_queryset(request)
+
+    #     return qs.filter(branch = request.user.branch)
+
 
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
