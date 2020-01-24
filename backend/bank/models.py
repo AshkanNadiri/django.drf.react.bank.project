@@ -7,8 +7,25 @@ class Branch(models.Model):
     branch = models.CharField(max_length = 100)
     address = models.CharField(max_length = 200)
 
+    # def get_user (request):
+    #     currentUser = request.user.username
+    #     return currentUser
+
+    users = models.ManyToManyField(User)
+
+    # customer =  models.ForeignKey(
+    #     User,
+    #     related_name = "customer",
+    #     on_delete = models.CASCADE,
+    #     null = True
+
+    # )
+
+   
     class Meta:
         verbose_name_plural = "branches"
+
+    
 
     def __str__(self): 
         return f"{self.branch}"

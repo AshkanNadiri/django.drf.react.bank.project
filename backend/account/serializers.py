@@ -6,19 +6,29 @@ from django.contrib.auth import authenticate
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission
-        fields = ('id', 'name',)
+        fields = ('id', 'name')
 
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
+    user_permissions = PermissionSerializer(many=True)
     groups = PermissionSerializer(many=True)
+
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'groups')
+        fields = '__all__'
+        # ('id', 'username', 'email', 'groups')
+
     def created(self, validated_data):
-        permissions_data = validated_data.pop('groups')
+        permissions_data = validated_data.pop('user_permissions')
         user = User.objects.create(**validated_data)
         for permission_data in permissions_data:
+            # console.log(user.id)
             Permission.objects.create(user=user, **permission_data)
+
+        group_data = validated_data.pop('groups')
+        user = User.objects.create(**validated_data)
+        for group in group_data:
+            Permission.objects.create(user = user, **group)
         return user
 
 # Register Serializer
@@ -46,6 +56,7 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
           return user
         raise serializers.ValidationError("Incorrect Credentials")
+
 
 # Group Serializer
 class GroupSerializer(serializers.ModelSerializer):

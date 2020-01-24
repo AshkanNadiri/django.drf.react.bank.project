@@ -29,6 +29,11 @@ class BranchViewSet(viewsets.ModelViewSet):
 
     #     return qs.filter(branch = request.user.branch)
 
+# class BranchModelMixin:
+#     def get_queryset(self, request):
+#         qs = super().get_queryset(request)
+
+#         return qs.filter(branch = request.user.branch)
 
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
@@ -41,7 +46,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
     
     def get_queryset(self):
-        return self.request.user.customers.all()[1]
+        return self.request.user.customers.all()[0]
 
     def perform_create(self, serializer):
         serializer.save(customer = self.request.user)

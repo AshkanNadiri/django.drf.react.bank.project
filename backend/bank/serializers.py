@@ -13,10 +13,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ['id','name']
 
-class BranchSerializer(serializers.HyperlinkedModelSerializer):
+class BranchSerializer(serializers.ModelSerializer):
+    users = UserSerializer(many=True, read_only = True)
+
     class Meta:
         model = Branch
-        fields = ['id','branch','address']
+        fields = ['branch','address','id','users']
 
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
