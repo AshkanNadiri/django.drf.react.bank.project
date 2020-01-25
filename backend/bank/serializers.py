@@ -15,10 +15,11 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class BranchSerializer(serializers.ModelSerializer):
     users = UserSerializer(many=True, read_only = True)
+    groups = GroupSerializer(many=True, read_only = True)
 
     class Meta:
         model = Branch
-        fields = ['branch','address','id','users']
+        fields = ['branch','address','id','users','groups']
 
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

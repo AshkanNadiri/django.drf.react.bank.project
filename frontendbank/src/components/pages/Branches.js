@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Modal from '../layout/Modal';
 import AddItem from '../layout/AddItem'
 import axios from 'axios';
+import {connect} from 'react-redux'
+// import PropTypes from 'prop-types'
 
 
 
@@ -9,8 +11,12 @@ class Branches extends Component {
 
     state = {
         branches: [],
+        showChase: false
         
     }
+    // static propTypes = {
+    //     auth: PropTypes.object.isRequired,
+    // }
 
     componentDidMount() {
         this.refreshBranches();
@@ -18,9 +24,13 @@ class Branches extends Component {
 
     //refresh branch list
     refreshBranches= (branch) => {
+        const {user} = this.props.auth
+        console.log(user.username)
         axios.get('http://127.0.0.1:8000/branches/')
             .then(res => {
                  this.setState({branches: res.data.results})
+                //  console.log(res.data.results.users)
+                
             })
             
             .catch(err=> console.log(err))
@@ -84,6 +94,7 @@ class Branches extends Component {
 
         
     render () {
+        
        return (
            <div>
                <AddItem placeholder={'Branch Name'} addItem={this.addItem}/> {
@@ -94,6 +105,8 @@ class Branches extends Component {
    }
 };
 
+const mapToStateProps = state => ({
+    auth: state.auth
+})
 
-
-export default Branches
+export default connect(mapToStateProps)(Branches);

@@ -62,6 +62,7 @@ export const login = (username, password) => dispatch => {
 
     axios.post('http://127.0.0.1:8000/api/auth/login', body, config)
         .then(res => {
+
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
@@ -148,7 +149,11 @@ export const tokenConfig = getState =>{
 
 //branch view
 
-export const 
+// export const getUser =(getState) => {
+//     const loggedUser = getState().user.username
+
+//     console.log(loggedUser)
+// }
 
 
 
