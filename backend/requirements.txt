@@ -1,18 +1,18 @@
--i https://pypi.org/simple
+-i https://pypi.org/simple/
 asgiref==3.2.3
-cffi==1.13.2
+cffi==1.14.0
 cryptography==2.8
 dj-database-url==0.5.0
 django-cors-headers==3.2.1
 django-heroku==0.3.1
 django-phone-field==1.8.0
 django-rest-knox==4.1.0
-django==3.0.2
+django==3.0.3
 djangorestframework==3.11.0
 gunicorn==20.0.4
 psycopg2==2.8.4
 pycparser==2.19
 pytz==2019.3
-six==1.13.0
+six==1.14.0
 sqlparse==0.3.0
 whitenoise==5.0.1
